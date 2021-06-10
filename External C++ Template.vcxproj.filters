@@ -20,60 +20,60 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="src/Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cheat.cpp">
+    <ClCompile Include="src/Cheat.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Process.cpp">
+    <ClCompile Include="src/Process.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Log.cpp">
+    <ClCompile Include="src/Log.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Offsets.cpp">
+    <ClCompile Include="src/Offsets.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="ProcessEntry.cpp">
+    <ClCompile Include="src/ProcessEntry.cpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleEntry.cpp">
+    <ClCompile Include="src/ModuleEntry.cpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClCompile>
-    <ClCompile Include="CustomString.cpp">
+    <ClCompile Include="src/CustomString.cpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClCompile>
-    <ClCompile Include="Globals.cpp">
+    <ClCompile Include="src/Globals.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cheat.h">
+    <ClInclude Include="src/Cheat.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Process.h">
+    <ClInclude Include="src/Process.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Log.h">
+    <ClInclude Include="src/Log.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Offsets.h">
+    <ClInclude Include="src/Offsets.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="ProcessEntry.h">
+    <ClInclude Include="src/ProcessEntry.h">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEntry.h">
+    <ClInclude Include="src/ModuleEntry.h">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="CustomString.h">
+    <ClInclude Include="src/CustomString.h">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="Json.h">
+    <ClInclude Include="src/Json.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Globals.h">
+    <ClInclude Include="src/Globals.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>

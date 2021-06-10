@@ -141,35 +141,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cheat.cpp" />
-    <ClCompile Include="CustomString.cpp" />
-    <ClCompile Include="Globals.cpp" />
-    <ClCompile Include="Log.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ModuleEntry.cpp" />
-    <ClCompile Include="Offsets.cpp" />
-    <ClCompile Include="Process.cpp" />
-    <ClCompile Include="ProcessEntry.cpp" />
+    <ClCompile Include="src/Cheat.cpp" />
+    <ClCompile Include="src/CustomString.cpp" />
+    <ClCompile Include="src/Globals.cpp" />
+    <ClCompile Include="src/Log.cpp" />
+    <ClCompile Include="src/Main.cpp" />
+    <ClCompile Include="src/ModuleEntry.cpp" />
+    <ClCompile Include="src/Offsets.cpp" />
+    <ClCompile Include="src/Process.cpp" />
+    <ClCompile Include="src/ProcessEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cheat.h" />
-    <ClInclude Include="CustomString.h" />
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="Json.h" />
-    <ClInclude Include="Log.h">
+    <ClInclude Include="src/Cheat.h" />
+    <ClInclude Include="src/CustomString.h" />
+    <ClInclude Include="src/Globals.h" />
+    <ClInclude Include="src/Json.h" />
+    <ClInclude Include="src/Log.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ModuleEntry.h" />
-    <ClInclude Include="Offsets.h">
+    <ClInclude Include="src/ModuleEntry.h" />
+    <ClInclude Include="src/Offsets.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Process.h">
+    <ClInclude Include="src/Process.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ProcessEntry.h">
+    <ClInclude Include="src/ProcessEntry.h">
       <SubType>
       </SubType>
     </ClInclude>
