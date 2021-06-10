@@ -28,11 +28,15 @@ public:
 	CModuleEntry GetModuleInformation(CCustomString) const;			// Get Base Address of Module of Given Name
 	DWORD64 FindSignature(DWORD64, DWORD64, BYTE*, BYTE*) const;	// Find Memory Signature within Specified Region
 	bool DataCompare(BYTE*, BYTE*, BYTE*) const;					// Utility Function for FindSignature()
-	template<class T> T Read(DWORD64 dwAddress);					// Reads a Memory Value at the Given Address
-	template<class T> void Write(DWORD64 dwAddress, T Value);		// Writes a Memory Value at the Given Address
 	HANDLE hTargetProcess() const;									// Get handle to target process
 	DWORD dwTargetProcessID() const;								// Get PID of target process
 	CCustomString ExeName() const;
+
+	template <class T> T Read(DWORD64 dwAddress) // Reads a Memory Value at the Given Address
+	{ T Result;	ReadProcessMemory(_hTargetProcess, (LPVOID)dwAddress, &Result, sizeof(T), NULL); return Result; }
+
+	template <class T> void Write(DWORD64 dwAddress, T Value) // Writes a Memory Value at the Given Address
+	{ WriteProcessMemory(_hTargetProcess, (LPVOID)dwAddress, &Value, sizeof(T), NULL); }
 
 private:
 

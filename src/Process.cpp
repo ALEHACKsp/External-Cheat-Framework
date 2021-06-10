@@ -139,22 +139,6 @@ bool CProcess::DataCompare(BYTE* Data, BYTE* Signature, BYTE* Mask) const
 	return true;
 }
 
-template <class T>
-T CProcess::Read(DWORD64 dwAddress)
-{
-	T Result;
-
-	ReadProcessMemory(_hTargetProcess, (LPVOID)dwAddress, &Result, sizeof(T), NULL);
-
-	return Result;
-}
-
-template <class T>
-void CProcess::Write(DWORD64 dwAddress, T Value)
-{
-	WriteProcessMemory(_hTargetProcess, (LPVOID)dwAddress, &Value, sizeof(T), NULL);
-}
-
 HANDLE CProcess::hTargetProcess() const
 {
 	return _hTargetProcess;
