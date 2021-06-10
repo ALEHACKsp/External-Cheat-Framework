@@ -39,47 +39,29 @@ int main()
 		while (Cheat->Running())
 		{
 			{
-				float Position[3] = 
-				{ 
-					Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos),
-					Cheat->Process()->Read<float>(LocalPlayerPtr + m_YPos),
-					Cheat->Process()->Read<float>(LocalPlayerPtr + m_ZPos)
-				};
-
-				bool bIsMoving =
-				{
-					Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving)
-				};
-
-				int Health =
-				{
-					Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health)
-				};
-
-				int Armour =
-				{
-					Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest)
-				};
-
-				int AmmoMags =
-				{
-					Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags)
-				};
-
-				int Ammo =
-				{
-					Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo)
-				};
+				float Position[3] = { 0 };
+				
+				for (size_t i = 0; i < 3; i++)
+					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (i * sizeof(float)));
+				
+				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };
+				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };
+				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest) };
+				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags) };
+				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo) };
 
 				Cheat->Console()->StartDraw();
 
-				// Dynamically Print using Log, example:
+				// Dynamically Print using Log
+
+				// START: ASSAULT CUBE EXAMPLE
 				Cheat->Log()->PrintPlain("LocalPlayer Position: %.3f, %.3f, %.3f\n", Position[0], Position[1], Position[2]);
-				Cheat->Log()->PrintPlain("LocalPlayer IsMoving: %s\n", bIsMoving ? "True" : "False");
+				Cheat->Log()->PrintPlain("LocalPlayer IsMoving: %s\n", bIsMoving ? "False" : "True");
 				Cheat->Log()->PrintPlain("LocalPlayer Health: %d\n", Health);
 				Cheat->Log()->PrintPlain("LocalPlayer Armour: %d\n", Armour);
 				Cheat->Log()->PrintPlain("CurrentWeapon Ammo Magazines: %d\n", AmmoMags);
 				Cheat->Log()->PrintPlain("CurrentWeapon Ammo: %d\n", Ammo);
+				// END: ASSAULT CUBE EXAMPLE
 
 				Cheat->Console()->EndDraw();
 			}
