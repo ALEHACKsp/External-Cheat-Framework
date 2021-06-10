@@ -9,6 +9,7 @@ class CLog;
 class CProcess;
 class CCustomString;
 class COffsets;
+class CConsole;
 struct Team;
 
 class CCheat
@@ -20,6 +21,7 @@ private:
 	CLog* _pLog;
 	CProcess* _pProcess;
 	COffsets* _pOffsets;
+	CConsole* _pConsole;
 	bool _bRunning;
 	DWORD _dwBaseModule;
 	DWORD _dwBaseSize;
@@ -32,6 +34,7 @@ public:
 	CLog* Log() const;
 	CProcess* Process() const;
 	COffsets* Offsets() const;
+	CConsole* Console() const;
 	bool Running() const;
 	DWORD BaseModule() const;
 	DWORD BaseSize() const;

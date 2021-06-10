@@ -21,6 +21,12 @@ public:
 	CLog(bool);
 
 	template<typename... Args>
+	void PrintPlain(CCustomString String, Args... arguments) const
+	{
+		printf_s(String.String(), std::forward<Args>(arguments)...);
+	}
+
+	template<typename... Args>
 	void Print(CCustomString String, Args... arguments) const
 	{
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

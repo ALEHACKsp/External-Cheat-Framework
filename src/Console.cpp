@@ -1,38 +1,75 @@
 #include "Console.h"
 #include "Cheat.h"
+#include "Log.h"
+#include "CustomString.h"
 
-CConsole::CConsole()
-    : _dwBufferSize{ 0 }, _bFirstDrawCall{ true }
+CConsole::CConsole(CCheat* pParent)
+    : _pParent{ pParent }, _dwBufferSize{ 0 }, _Buffer{ const_cast<char*>("") }, _bFirstDrawCall{ true }
 {
+}
+
+CConsole::~CConsole()
+{
+    delete[] _Buffer;
+}
+
+void CConsole::SetCursor(int column, int line)
+{
+    COORD coord;
+
+    coord.X = column;
+    coord.Y = line;
+
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
 void CConsole::StartDraw()
 {
     if (_bFirstDrawCall)
     {
-        _dwBufferSize = GetNumCharsInConsoleBuffer();
+        CONSOLE_SCREEN_BUFFER_INFO BufferInfo;
+        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &BufferInfo);
+        _DrawPosition = BufferInfo.dwCursorPosition;
+        _DrawPosition.Y += 3;
+
+        /*_dwBufferSize = GetNumCharsInConsoleBuffer();
+        _Buffer = new char[_dwBufferSize + 1];
+        memset(_Buffer, 0, _dwBufferSize);
+
+        if (!ReadConsoleBuffer(_Buffer, _dwBufferSize))
+            return;*/
+
         _bFirstDrawCall = false;
     }
-    
-    if (_dwBufferSize > 0)
+    else
     {
-        char* Buffer = new char[_dwBufferSize + 1];
-
-        memset(Buffer, 0, _dwBufferSize);
-
-        if (!ReadConsoleBuffer(Buffer, _dwBufferSize))
-            return;
-
-        delete [] Buffer;
+        SetCursor(_DrawPosition.X, _DrawPosition.Y - 2);
+        _pParent->Log()->PrintPlain("[--------------------------------------------------------]\n");
     }
 
-    
+    for (int i = 0; i < _nDrawLines; i++)
+    {
+        printf("                                                                                                   \n");
+    }
+
+    if (_bFirstDrawCall)
+    {
+        SetCursor(_DrawPosition.X, _DrawPosition.Y - 2);
+        _pParent->Log()->PrintPlain("[--------------------------------------------------------]\n");
+    }
+
+    SetCursor(_DrawPosition.X, _DrawPosition.Y);
 }
 
 void CConsole::EndDraw()
 {
-}
+    CONSOLE_SCREEN_BUFFER_INFO BufferInfo;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &BufferInfo);
 
+    _nDrawLines = -_DrawPosition.Y + BufferInfo.dwCursorPosition.Y;
+
+    _pParent->Log()->PrintPlain("\n[--------------------------------------------------------]\n");
+}
 
 DWORD CConsole::GetNumCharsInConsoleBuffer()
 {

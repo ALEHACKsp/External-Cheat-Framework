@@ -13,11 +13,17 @@ public:
 private:
 	CCheat* _pParent;
 	size_t _dwBufferSize;
+	char* _Buffer;
 	bool _bFirstDrawCall;
+	COORD _DrawPosition;
+	int _nDrawLines;
 
 	// Methods
 public:
-	CConsole();
+	CConsole(CCheat*);
+	~CConsole();
+
+	void SetCursor(int column, int line);
 
 	void StartDraw();
 	void EndDraw();

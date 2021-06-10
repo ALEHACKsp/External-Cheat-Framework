@@ -3,11 +3,12 @@
 #include "Log.h"
 #include "Process.h"
 #include "Offsets.h"
+#include "Console.h"
 #include "ModuleEntry.h"
 #include <string>
 
 CCheat::CCheat()
-	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 }
+	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, _pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 }
 {
 	pGlobals->_gpCheat = this;
 }
@@ -32,6 +33,11 @@ CProcess* CCheat::Process() const
 COffsets* CCheat::Offsets() const
 {
 	return _pOffsets;
+}
+
+CConsole* CCheat::Console() const
+{
+	return _pConsole;
 }
 
 bool CCheat::Running() const
