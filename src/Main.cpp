@@ -4,11 +4,15 @@
 #include "Log.h"
 #include "Console.h"
 
-#define REFRESH_DELAY 17.7 // ~60hz Frametime
+// Global Switches, defined here for convenience... 
+// You can define KERNEL_MODE_RW in the preprocessor settings in the properties windows to toggle Kernel Driver based read/writes
+
+	#define REFRESH_DELAY 17.7	// ~60hz Frametime.
+
 
 int main()
 {
-	CCheat* Cheat = new CCheat; // Allocate new storage on the heap for a CCheat object, and then store a pointer that points to that storage here.
+	CCheat* Cheat = new CCheat(); // Allocate new storage on the heap for a CCheat object, and then store a pointer that points to that storage here.
 
 	{
 		if (!Cheat->Process()->Attach("ac_client.exe"))
@@ -43,24 +47,21 @@ int main()
 			{
 				Cheat->StartDeltaTime();
 
-
 				// START: ASSAULT CUBE EXAMPLE
 				float Position[3] = { 0 };
-				
+
 				for (size_t i = 0; i < 3; i++)																		// Here we perform 3 read calls that each read 4 bytes of data at the address
-					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (i * sizeof(float)));		// resulted by the equation LocalPlayerPtr + m_XPos + (i * sizeof(float))
-				
+					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (i * sizeof(float)));		// resulted by the equation LocalPlayerPtr + m_XPos + (i * sizeof(float)).
+
 				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };					// Here we read a single byte of data at the address resulted by the equation
-				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };							// LocalPlayerPtr + m_isPosMoving
+				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };							// LocalPlayerPtr + m_isPosMoving.
 				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest) };
 				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags) };
 				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo) };
 				// END: ASSAULT CUBE EXAMPLE
 
 
-				Cheat->Console()->StartDraw();
-
-				// Dynamically Print using Log
+				Cheat->Console()->StartDraw(); // Clear debug buffer for new printing
 
 
 				// START: ASSAULT CUBE EXAMPLE
@@ -73,18 +74,18 @@ int main()
 				// END: ASSAULT CUBE EXAMPLE
 
 
-				Cheat->Console()->EndDraw();
+				Cheat->Console()->EndDraw(); // Finish debug draw
+
 				Cheat->EndDeltaTime();
-				Cheat->Log()->PrintWarning("Delta Time: %d", Cheat->DeltaTime());
 			}
 
-			Sleep((static_cast<int>(REFRESH_DELAY - Cheat->DeltaTime())  // Cap the refresh rate of the console.. We minus the time it took for memory reading/writing and
-				& 0x80000000) ? 0 : REFRESH_DELAY - Cheat->DeltaTime()); // console printing to keep it consistent. We check if the high bit is set to see if it is a negative
-													   
+			Sleep((static_cast<int>(REFRESH_DELAY - Cheat->DeltaTime())  // Cap the refresh rate of the console.. We minus the time it took for memory reading/writing and console
+				& 0x80000000) ? 0 : REFRESH_DELAY - Cheat->DeltaTime()); // printing to keep it consistent. We check if the high bit is set to see if it is a negative value.
+
 		}
 	}
 
-	delete Cheat; // Free the previously allocated storage for the CCheat object(line 11), and set the pointer to nullptr
+	delete Cheat; // Free the previously allocated storage for the CCheat object(line 11), and set the pointer to nullptr.
 
 	return 1;
 }

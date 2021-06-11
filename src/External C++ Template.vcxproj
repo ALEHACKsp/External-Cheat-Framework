@@ -163,6 +163,7 @@
     </ClInclude>
     <ClInclude Include="Cheat.h" />
     <ClInclude Include="CustomString.h" />
+    <ClInclude Include="Driver.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Json.h" />
     <ClInclude Include="Log.h">

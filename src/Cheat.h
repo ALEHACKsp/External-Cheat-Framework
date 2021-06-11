@@ -10,7 +10,6 @@ class CProcess;
 class CCustomString;
 class COffsets;
 class CConsole;
-struct Team;
 
 class CCheat
 {
@@ -38,7 +37,7 @@ public:
 	COffsets* Offsets() const;
 	CConsole* Console() const;
 	bool Running() const;
-	int DeltaTime();
+	int DeltaTime() const;
 	void StartDeltaTime();
 	void EndDeltaTime();
 	DWORD BaseModule() const;
@@ -51,4 +50,4 @@ private:
 
 };
 
-#endif // _Cheat_H_
+#endif // !_Cheat_H_

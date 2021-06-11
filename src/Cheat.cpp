@@ -48,7 +48,7 @@ bool CCheat::Running() const
 	return _bRunning;
 }
 
-int CCheat::DeltaTime()
+int CCheat::DeltaTime() const
 {
 	return DeltaTimeEnd - DeltaTimeStart;
 }

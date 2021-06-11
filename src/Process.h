@@ -7,6 +7,7 @@
 class CCheat;
 class CCustomString;
 class CModuleEntry;
+class CDriver;
 
 class CProcess
 {
@@ -18,6 +19,11 @@ private:
 	HANDLE	_hTargetProcess;
 	DWORD	_dwTargetProcessID;
 	CCustomString* _ExeName;
+
+#ifdef KERNEL_MODE_RW
+	CDriver* _pDriver;
+#endif // KERNEL_MODE_RW
+
 
 	// Class Methods
 public:
@@ -31,6 +37,12 @@ public:
 	HANDLE hTargetProcess() const;									// Get handle to target process
 	DWORD dwTargetProcessID() const;								// Get PID of target process
 	CCustomString ExeName() const;
+
+#ifdef KERNEL_MODE_RW
+
+	// TO DO; add kernel read/writes
+
+#else
 
 	template <class T> T Read(DWORD64 dwAddress) // Reads a Memory Value at the Given DWORD64 Address
 	{ T Result;	ReadProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
@@ -50,8 +62,10 @@ public:
 	template <class T> void Write(WORD dwAddress, T Value) // Writes a Memory Value at the Given WORD Address
 	{ WriteProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
 
+#endif // KERNEL_MODE_RW
+
 private:
 
 };
 
-#endif // _Process_H_
+#endif // !_Process_H_
