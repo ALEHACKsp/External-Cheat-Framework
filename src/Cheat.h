@@ -25,6 +25,8 @@ private:
 	bool _bRunning;
 	DWORD _dwBaseModule;
 	DWORD _dwBaseSize;
+	int DeltaTimeStart;
+	int DeltaTimeEnd;
 
 	// Methods
 public:
@@ -36,6 +38,9 @@ public:
 	COffsets* Offsets() const;
 	CConsole* Console() const;
 	bool Running() const;
+	int DeltaTime();
+	void StartDeltaTime();
+	void EndDeltaTime();
 	DWORD BaseModule() const;
 	DWORD BaseSize() const;
 	bool GetGameModule(CCustomString);

@@ -5,10 +5,13 @@
 #include "Offsets.h"
 #include "Console.h"
 #include "ModuleEntry.h"
+#include <ctime>
 #include <string>
 
 CCheat::CCheat()
-	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, _pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 }
+	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, 
+	_pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 },
+	DeltaTimeStart{ 0 }, DeltaTimeEnd{ 0 }
 {
 	pGlobals->_gpCheat = this;
 }
@@ -43,6 +46,21 @@ CConsole* CCheat::Console() const
 bool CCheat::Running() const
 {
 	return _bRunning;
+}
+
+int CCheat::DeltaTime()
+{
+	return DeltaTimeEnd - DeltaTimeStart;
+}
+
+void CCheat::StartDeltaTime()
+{
+	DeltaTimeStart = clock();
+}
+
+void CCheat::EndDeltaTime()
+{
+	DeltaTimeEnd = clock();
 }
 
 DWORD CCheat::BaseModule() const
