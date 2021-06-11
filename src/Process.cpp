@@ -6,7 +6,7 @@
 #include "Log.h"
 
 CProcess::CProcess(CCheat* pParent)
-	: _pParent{ pParent }, _hTargetProcess{ static_cast<HANDLE>(0) }, _dwTargetProcessID{ 0 }
+	: _pParent{ pParent }, _hTargetProcess{ static_cast<HANDLE>(0) }, _dwTargetProcessID{ 0 }, _ExeName{ new CCustomString("NoName") }
 {
 }
 

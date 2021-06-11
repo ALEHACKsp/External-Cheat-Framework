@@ -47,11 +47,11 @@ int main()
 				// START: ASSAULT CUBE EXAMPLE
 				float Position[3] = { 0 };
 				
-				for (size_t i = 0; i < 3; i++)
-					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (i * sizeof(float)));
+				for (size_t i = 0; i < 3; i++)																		// Here we perform 3 read calls that each read 4 bytes of data at the address
+					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (i * sizeof(float)));		// resulted by the equation LocalPlayerPtr + m_XPos + (i * sizeof(float))
 				
-				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };
-				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };
+				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };					// Here we read a single byte of data at the address resulted by the equation
+				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };							// LocalPlayerPtr + m_isPosMoving
 				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest) };
 				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags) };
 				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo) };
