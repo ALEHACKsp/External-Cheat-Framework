@@ -1,6 +1,6 @@
 #include "Log.hpp"
 #include "Cheat.hpp"
-#include "CustomString.hpp"
+#include "String.hpp"
 
 CLog::CLog(bool Enabled)
 	: _bEnabled{ Enabled }

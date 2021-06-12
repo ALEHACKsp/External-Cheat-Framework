@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <utility>
-#include "CustomString.hpp"
+#include "String.hpp"
 
 class CECF;
 

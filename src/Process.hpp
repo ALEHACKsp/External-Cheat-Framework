@@ -51,22 +51,22 @@ public:
 #else
 
 	template <class T> T Read(DWORD64 dwAddress) // Reads a Memory Value at the Given DWORD64 Address
-	{ T Result;	ReadProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
+	{ T Result;	ReadProcessMemory(_hTargetProcess, reinterpret_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
 
 	template <class T> void Write(DWORD64 dwAddress, T Value) // Writes a Memory Value at the Given DWORD64 Address
-	{ WriteProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
+	{ WriteProcessMemory(_hTargetProcess, reinterpret_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
 
 	template <class T> T Read(DWORD dwAddress) // Reads a Memory Value at the Given DWORD Address
-	{ T Result;	ReadProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
+	{ T Result;	ReadProcessMemory(_hTargetProcess, reinterpret_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
 
 	template <class T> void Write(DWORD dwAddress, T Value) // Writes a Memory Value at the Given DWORD Address
-	{ WriteProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
+	{ WriteProcessMemory(_hTargetProcess, reinterpret_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
 
 	template <class T> T Read(WORD dwAddress) // Reads a Memory Value at the Given WORD Address
-	{ T Result;	ReadProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
+	{ T Result;	ReadProcessMemory(_hTargetProcess, reinterpret_cast<LPVOID>(dwAddress), &Result, sizeof(T), NULL); return Result; }
 
 	template <class T> void Write(WORD dwAddress, T Value) // Writes a Memory Value at the Given WORD Address
-	{ WriteProcessMemory(_hTargetProcess, static_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
+	{ WriteProcessMemory(_hTargetProcess, reinterpret_cast<LPVOID>(dwAddress), &Value, sizeof(T), NULL); }
 
 #endif // KERNEL_MODE_RW
 

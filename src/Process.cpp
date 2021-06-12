@@ -1,6 +1,6 @@
 #include "Cheat.hpp"
 #include "Process.hpp"
-#include "CustomString.hpp"
+#include "String.hpp"
 #include "ProcessEntry.hpp"
 #include "ModuleEntry.hpp"
 #include "Log.hpp"

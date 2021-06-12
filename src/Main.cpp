@@ -1,5 +1,5 @@
 #include "Cheat.hpp"
-#include "CustomString.hpp"
+#include "String.hpp"
 #include "Process.hpp"
 #include "Log.hpp"
 #include "Console.hpp"

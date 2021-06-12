@@ -1,7 +1,7 @@
 #include "Console.hpp"
 #include "Cheat.hpp"
 #include "Log.hpp"
-#include "CustomString.hpp"
+#include "String.hpp"
 
 CConsole::CConsole(CECF* pParent)
     : _pParent{ pParent }, _dwBufferSize{ 0 }, _Buffer{ const_cast<char*>("") }, _bFirstDrawCall{ true }
