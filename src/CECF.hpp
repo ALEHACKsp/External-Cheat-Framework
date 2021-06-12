@@ -1,5 +1,5 @@
-#ifndef _Cheat_Hpp_
-#define _Cheat_Hpp_
+#ifndef _CECF_Hpp_
+#define _CECF_Hpp_
 
 #include <Windows.h>
 #include <map>
@@ -100,4 +100,4 @@ private:
 
 };
 
-#endif // !_Cheat_Hpp_
+#endif // !_CECF_Hpp_

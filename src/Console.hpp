@@ -21,13 +21,13 @@ private:
 	/// <summary> unused. </summary>
 	char* _Buffer;
 
-	/// <summary> Set to whether the debugger console has made it's first drawcall. </summary>
+	/// <summary> Set to whether the debugger console has made it's first draw call. </summary>
 	bool _bFirstDrawCall;
 
-	/// <summary> Set to  </summary>
+	/// <summary> Set automatically to the starting line for the debugger console print(er) when the first draw call is made. </summary>
 	COORD _DrawPosition;
 
-	/// <summary> .... </summary>
+	/// <summary> Set automatically to the amount of lines the debugging console will take up to assist with flushing the buffer. </summary>
 	int _nDrawLines;
 
 	// Methods
@@ -54,7 +54,8 @@ public:
     DWORD GetNumCharsInConsoleBuffer();
 
 	/// <summary> .... </summary>
-	/// <param name="bar"> .... </param>
+	/// <param name="Buffer"> .... </param>
+	/// <param name="BufferSize"> .... </param>
 	/// <returns> .... </returns>
     DWORD ReadConsoleBuffer(char* Buffer, DWORD BufferSize);
 

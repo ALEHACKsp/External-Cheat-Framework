@@ -855,7 +855,7 @@ namespace nlohmann
 		json.exception.parse_error.102 | parse error at 14: missing or wrong low surrogate | JSON uses the `\uxxxx` format to describe Unicode characters. Code points above above 0xFFFF are split into two `\uxxxx` entries ("surrogate pairs"). This error indicates that the surrogate pair is incomplete or contains an invalid code point.
 		json.exception.parse_error.103 | parse error: code points above 0x10FFFF are invalid | Unicode supports code points up to 0x10FFFF. Code points above 0x10FFFF are invalid.
 		json.exception.parse_error.104 | parse error: JSON patch must be an array of objects | [RFC 6902](https://tools.ietf.org/html/rfc6902) requires a JSON Patch document to be a JSON document that represents an array of objects.
-		json.exception.parse_error.105 | parse error: operation must have string member 'op' | An operation of a JSON Patch document must contain exactly one "op" member, whose value indicates the operation to perform. Its value must be one of "add", "remove", "replace", "move", "copy", or "test"; other values are errors.
+		json.exception.parse_error.105 | parse error: Operation must have string member 'op' | An Operation of a JSON Patch document must contain exactly one "op" member, whose value indicates the Operation to perform. Its value must be one of "add", "remove", "replace", "move", "copy", or "test"; other values are errors.
 		json.exception.parse_error.106 | parse error: array index '01' must not begin with '0' | An array index in a JSON Pointer ([RFC 6901](https://tools.ietf.org/html/rfc6901)) may be `0` or any number without a leading `0`.
 		json.exception.parse_error.107 | parse error: JSON pointer must be empty or begin with '/' - was: 'foo' | A JSON Pointer must be a Unicode string containing a sequence of zero or more reference tokens, each prefixed by a `/` character.
 		json.exception.parse_error.108 | parse error: escape character '~' must be followed with '0' or '1' | In a JSON Pointer, only `~0` and `~1` are valid escape sequences.
@@ -1089,7 +1089,7 @@ namespace nlohmann
 
 		name / id                      | example message | description
 		------------------------------ | --------------- | -------------------------
-		json.exception.other_error.501 | unsuccessful: {"op":"test","path":"/baz", "value":"bar"} | A JSON Patch operation 'test' failed. The unsuccessful operation is also printed.
+		json.exception.other_error.501 | unsuccessful: {"op":"test","path":"/baz", "value":"bar"} | A JSON Patch Operation 'test' failed. The unsuccessful Operation is also printed.
 
 		@sa @ref exception for the base class of the library exceptions
 		@sa @ref parse_error for exceptions indicating a parse error
@@ -19622,7 +19622,7 @@ namespace nlohmann
 		objects
 
 		@throw parse_error.105 if the JSON patch is malformed (e.g., mandatory
-		attributes are missing); example: `"operation add must have member path"`
+		attributes are missing); example: `"Operation add must have member path"`
 
 		@throw out_of_range.401 if an array index is out of range.
 
@@ -19633,7 +19633,7 @@ namespace nlohmann
 		@throw out_of_range.405 if JSON pointer has no parent ("add", "remove",
 		"move")
 
-		@throw other_error.501 if "test" operation was unsuccessful
+		@throw other_error.501 if "test" Operation was unsuccessful
 
 		@complexity Linear in the size of the JSON value and the length of the
 		JSON patch. As usually only a fraction of the JSON value is affected by
@@ -19687,7 +19687,7 @@ namespace nlohmann
 				return patch_operations::invalid;
 			};
 
-			// wrapper for "add" operation; add value at ptr
+			// wrapper for "add" Operation; add value at ptr
 			const auto operation_add = [&result](json_pointer& ptr, basic_json val)
 			{
 				// adding to the root of the target document means replacing it
@@ -19751,7 +19751,7 @@ namespace nlohmann
 				}
 			};
 
-			// wrapper for "remove" operation; remove value at ptr
+			// wrapper for "remove" Operation; remove value at ptr
 			const auto operation_remove = [&result](json_pointer& ptr)
 			{
 				// get reference to parent of JSON pointer ptr
@@ -19788,7 +19788,7 @@ namespace nlohmann
 			// iterate and apply the operations
 			for (const auto& val : json_patch)
 			{
-				// wrapper to get a value for an operation
+				// wrapper to get a value for an Operation
 				const auto get_value = [&val](const std::string& op,
 					const std::string& member,
 					bool string_type) -> basic_json&
@@ -19855,9 +19855,9 @@ namespace nlohmann
 					// the "from" location must exist - use at()
 					basic_json v = result.at(from_ptr);
 
-					// The move operation is functionally identical to a
-					// "remove" operation on the "from" location, followed
-					// immediately by an "add" operation at the target
+					// The move Operation is functionally identical to a
+					// "remove" Operation on the "from" location, followed
+					// immediately by an "add" Operation at the target
 					// location with the value that was just removed.
 					operation_remove(from_ptr);
 					operation_add(ptr, v);
@@ -19873,7 +19873,7 @@ namespace nlohmann
 					basic_json v = result.at(from_ptr);
 
 					// The copy is functionally identical to an "add"
-					// operation at the target location using the value
+					// Operation at the target location using the value
 					// specified in the "from" member.
 					operation_add(ptr, v);
 					break;

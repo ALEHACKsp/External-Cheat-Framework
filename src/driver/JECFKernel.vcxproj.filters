@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Classes">
+      <UniqueIdentifier>{941dcdba-4397-437a-85a2-8f49f6e433cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SDK">
+      <UniqueIdentifier>{c363c10d-5246-4ff4-a6aa-bada3e952517}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Windows.hpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.hpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Raid.hpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Shared.hpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
