@@ -21,13 +21,13 @@ public:
 	CLog(bool);
 
 	template<typename... Args>
-	void PrintPlain(CCustomString String, Args... arguments) const
+	void PrintPlain(CString String, Args... arguments) const
 	{
 		printf_s(String.String(), std::forward<Args>(arguments)...);
 	}
 
 	template<typename... Args>
-	void Print(CCustomString String, Args... arguments) const
+	void Print(CString String, Args... arguments) const
 	{
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -45,7 +45,7 @@ public:
 	}
 
 	template<typename... Args>
-	void PrintWarning(CCustomString String, Args... arguments) const
+	void PrintWarning(CString String, Args... arguments) const
 	{
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -63,7 +63,7 @@ public:
 	}
 
 	template<typename... Args>
-	void PrintError(CCustomString String, Args... arguments) const
+	void PrintError(CString String, Args... arguments) const
 	{
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 

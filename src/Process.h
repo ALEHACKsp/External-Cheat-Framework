@@ -4,8 +4,8 @@
 #include <Windows.h>
 #include <TlHelp32.h>
 
+class CString;
 class CCheat;
-class CCustomString;
 class CModuleEntry;
 class CDriver;
 
@@ -18,7 +18,7 @@ private:
 	CCheat* _pParent;
 	HANDLE	_hTargetProcess;
 	DWORD	_dwTargetProcessID;
-	CCustomString* _ExeName;
+	CString* _ExeName;
 
 #ifdef KERNEL_MODE_RW
 	CDriver* _pDriver;
@@ -30,13 +30,13 @@ public:
 	CProcess(CCheat*);												// Constructor, Requires Pointer to Parent Object
 	~CProcess();													// Destructor
 
-	bool Attach(CCustomString);										// Attach 
-	CModuleEntry GetModuleInformation(CCustomString) const;			// Get Base Address of Module of Given Name
+	bool Attach(CString);											// Attach 
+	CModuleEntry GetModuleInformation(CString) const;				// Get Base Address of Module of Given Name
 	DWORD64 FindSignature(DWORD64, DWORD64, BYTE*, BYTE*) const;	// Find Memory Signature within Specified Region
 	bool DataCompare(BYTE*, BYTE*, BYTE*) const;					// Utility Function for FindSignature()
 	HANDLE hTargetProcess() const;									// Get handle to target process
 	DWORD dwTargetProcessID() const;								// Get PID of target process
-	CCustomString ExeName() const;
+	CString ExeName() const;
 
 #ifdef KERNEL_MODE_RW
 

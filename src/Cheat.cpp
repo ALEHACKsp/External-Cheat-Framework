@@ -74,7 +74,7 @@ DWORD CCheat::BaseSize() const
 }
 
 
-bool CCheat::GetGameModule(CCustomString GameName)
+bool CCheat::GetGameModule(CString GameName)
 {
 	CModuleEntry ModuleEntry = _pProcess->GetModuleInformation(GameName);
 

@@ -5,9 +5,9 @@
 #include <map>
 #include <vector>
 
+class CString;
 class CLog;
 class CProcess;
-class CCustomString;
 class COffsets;
 class CConsole;
 
@@ -42,7 +42,7 @@ public:
 	void EndDeltaTime();
 	DWORD BaseModule() const;
 	DWORD BaseSize() const;
-	bool GetGameModule(CCustomString);
+	bool GetGameModule(CString);
 	void GetGameData();
 	void Draw();
 	

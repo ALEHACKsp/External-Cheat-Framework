@@ -3,33 +3,33 @@
 
 #include <Windows.h>
 
-class CCustomString
+class CString
 {
 private:
     char* _String;
 public:
-    CCustomString();                                          // No-args constructor
-    CCustomString(const char*);                               // Overloaded constructor
-    CCustomString(const CCustomString&);                      // Copy constructor
-    CCustomString(CCustomString&&) noexcept;                  // Move constructor
-    ~CCustomString();                                         // Destructor
+    CString();                                          // No-args constructor
+    CString(const char*);                               // Overloaded constructor
+    CString(const CString&);                      // Copy constructor
+    CString(CString&&) noexcept;                  // Move constructor
+    ~CString();                                         // Destructor
 
-    CCustomString& operator=(const CCustomString&);           // Copy assignment
-    CCustomString& operator=(CCustomString&&) noexcept;       // Move assignment
+    CString& operator=(const CString&);           // Copy assignment
+    CString& operator=(CString&&) noexcept;       // Move assignment
 
-    CCustomString operator-() const;
-    bool operator==(const CCustomString&) const;
-    bool operator!=(const CCustomString&) const;
-    bool operator<(const CCustomString&) const;
-    bool operator>(const CCustomString&) const;
-    CCustomString operator+(const CCustomString&) const;
-    CCustomString& operator+=(const CCustomString&);
-    CCustomString operator*(int) const;
-    CCustomString& operator*=(int);
-    CCustomString& operator++();
-    CCustomString operator++(int);
-    CCustomString& operator--();
-    CCustomString operator--(int);
+    CString operator-() const;
+    bool operator==(const CString&) const;
+    bool operator!=(const CString&) const;
+    bool operator<(const CString&) const;
+    bool operator>(const CString&) const;
+    CString operator+(const CString&) const;
+    CString& operator+=(const CString&);
+    CString operator*(int) const;
+    CString& operator*=(int);
+    CString& operator++();
+    CString operator++(int);
+    CString& operator--();
+    CString operator--(int);
 
     int Length() const;
     const char* String() const;

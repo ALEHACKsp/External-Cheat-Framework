@@ -1,13 +1,13 @@
 #include "CustomString.h"
 
-CCustomString::CCustomString()
+CString::CString()
     : _String{ nullptr }
 {
     _String = new char[1];
     *_String = '\0';
 }
 
-CCustomString::CCustomString(const char* s)
+CString::CString(const char* s)
     : _String{ nullptr }
 {
     if (s == nullptr)
@@ -23,7 +23,7 @@ CCustomString::CCustomString(const char* s)
 }
 
 // Copy constructor
-CCustomString::CCustomString(const CCustomString& source)
+CString::CString(const CString& source)
     : _String{ nullptr }
 {
     _String = new char[strlen(source._String) + 1];
@@ -31,20 +31,20 @@ CCustomString::CCustomString(const CCustomString& source)
 }
 
 // Move constructor
-CCustomString::CCustomString(CCustomString&& source) noexcept
+CString::CString(CString&& source) noexcept
     :_String(source._String)
 {
     source._String = nullptr;
 }
 
 // Destructor
-CCustomString::~CCustomString()
+CString::~CString()
 {
     delete[] _String;
 }
 
 // Copy assignment
-CCustomString& CCustomString::operator=(const CCustomString& rhs)
+CString& CString::operator=(const CString& rhs)
 {
     if (this == &rhs)
         return *this;
@@ -58,7 +58,7 @@ CCustomString& CCustomString::operator=(const CCustomString& rhs)
 }
 
 // Move assignment
-CCustomString& CCustomString::operator=(CCustomString&& rhs) noexcept
+CString& CString::operator=(CString&& rhs) noexcept
 {
     if (this == &rhs)
         return *this;
@@ -72,7 +72,7 @@ CCustomString& CCustomString::operator=(CCustomString&& rhs) noexcept
 }
 
 
-CCustomString CCustomString::operator-() const
+CString CString::operator-() const
 {
     char* buff = new char[strlen(_String) + 1];
     strcpy(buff, _String);
@@ -80,57 +80,57 @@ CCustomString CCustomString::operator-() const
     for (size_t i = 0; i < strlen(_String); i++)
         buff[i] = tolower(buff[i]);
 
-    CCustomString out(buff);
+    CString out(buff);
 
     delete[] buff;
 
     return out;
 }
 
-bool CCustomString::operator==(const CCustomString& rhs) const
+bool CString::operator==(const CString& rhs) const
 {
     return (strcmp(this->_String, rhs._String) == 0);
 }
 
-bool CCustomString::operator!=(const CCustomString& rhs) const
+bool CString::operator!=(const CString& rhs) const
 {
     return (strcmp(this->_String, rhs._String) != 0);
 }
 
-bool CCustomString::operator<(const CCustomString& rhs) const
+bool CString::operator<(const CString& rhs) const
 {
     return this->_String < rhs._String;
 }
 
-bool CCustomString::operator>(const CCustomString& rhs) const
+bool CString::operator>(const CString& rhs) const
 {
     return this->_String > rhs._String;
 }
 
-CCustomString CCustomString::operator+(const CCustomString& rhs) const
+CString CString::operator+(const CString& rhs) const
 {
     char* buff = new char[strlen(_String) + strlen(rhs._String) + 1];
 
     strcpy(buff, _String);
     strcat(buff, rhs._String);
 
-    CCustomString out(buff);
+    CString out(buff);
 
     delete[] buff;
 
     return out;
 }
 
-CCustomString& CCustomString::operator+=(const CCustomString& rhs)
+CString& CString::operator+=(const CString& rhs)
 {
     *this = *this + rhs;
 
     return *this;
 }
 
-CCustomString CCustomString::operator*(int rhs) const
+CString CString::operator*(int rhs) const
 {
-    CCustomString out(_String);
+    CString out(_String);
 
     for (size_t i = 1; i < rhs; i++)
         out += *this;
@@ -138,14 +138,14 @@ CCustomString CCustomString::operator*(int rhs) const
     return out;
 }
 
-CCustomString& CCustomString::operator*=(int rhs)
+CString& CString::operator*=(int rhs)
 {
     *this = *this * rhs;
 
     return *this;
 }
 
-CCustomString& CCustomString::operator++()
+CString& CString::operator++()
 {
     for (size_t i = 0; i < strlen(_String); i++)
         _String[i] = toupper(_String[i]);
@@ -153,14 +153,14 @@ CCustomString& CCustomString::operator++()
     return *this;
 }
 
-CCustomString CCustomString::operator++(int)
+CString CString::operator++(int)
 {
-    CCustomString out(*this);
+    CString out(*this);
     operator++();
     return out;
 }
 
-CCustomString& CCustomString::operator--()
+CString& CString::operator--()
 {
     for (size_t i = 0; i < strlen(_String); i++)
         _String[i] = tolower(_String[i]);
@@ -168,19 +168,19 @@ CCustomString& CCustomString::operator--()
     return *this;
 }
 
-CCustomString CCustomString::operator--(int)
+CString CString::operator--(int)
 {
-    CCustomString out(*this);
+    CString out(*this);
     operator--();
     return out;
 }
 
-int CCustomString::Length() const
+int CString::Length() const
 {
     return strlen(_String);
 }
 
-const char* CCustomString::String() const
+const char* CString::String() const
 {
     return _String;
 }

@@ -6,7 +6,7 @@
 #include "Log.h"
 
 CProcess::CProcess(CCheat* pParent)
-	: _pParent{ pParent }, _hTargetProcess{ static_cast<HANDLE>(0) }, _dwTargetProcessID{ 0 }, _ExeName{ new CCustomString("NoName") }
+	: _pParent{ pParent }, _hTargetProcess{ static_cast<HANDLE>(0) }, _dwTargetProcessID{ 0 }, _ExeName{ new CString("NoName") }
 {
 }
 
@@ -17,7 +17,7 @@ CProcess::~CProcess()
 	delete _ExeName;
 }
 
-bool CProcess::Attach(CCustomString ProcessName)
+bool CProcess::Attach(CString ProcessName)
 {
 	HANDLE hProcessSnap{ NULL };
 	HANDLE hProcess{ NULL };
@@ -54,7 +54,7 @@ bool CProcess::Attach(CCustomString ProcessName)
 					return false;
 				}
 
-				_ExeName = new CCustomString(ProcessEntry.Process()->szExeFile);
+				_ExeName = new CString(ProcessEntry.Process()->szExeFile);
 				CloseHandle(hProcess);
 
 				return true;
@@ -67,7 +67,7 @@ bool CProcess::Attach(CCustomString ProcessName)
 	return false;
 }
 
-CModuleEntry CProcess::GetModuleInformation(CCustomString ModuleName) const
+CModuleEntry CProcess::GetModuleInformation(CString ModuleName) const
 {
 	HANDLE hModuleSnap{ NULL };
 	CModuleEntry ModuleEntry{ };
@@ -149,7 +149,7 @@ DWORD CProcess::dwTargetProcessID() const
 	return _dwTargetProcessID;
 }
 
-CCustomString CProcess::ExeName() const
+CString CProcess::ExeName() const
 {
 	return *_ExeName;
 }
