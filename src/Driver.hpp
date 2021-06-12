@@ -1,5 +1,5 @@
-#ifndef _Driver_H_
-#define _Driver_H_
+#ifndef _Driver_Hpp_
+#define _Driver_Hpp_
 
 class CDriver
 {
@@ -18,4 +18,4 @@ private:
 
 };
 
-#endif // !_Driver_H_
+#endif // !_Driver_Hpp_

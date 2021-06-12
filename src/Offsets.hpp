@@ -1,7 +1,7 @@
-#ifndef _Offsets_H_
-#define _Offsets_H_
+#ifndef _Offsets_Hpp_
+#define _Offsets_Hpp_
 
-class CCheat;
+class CECF;
 
 class COffset
 {
@@ -24,11 +24,11 @@ class COffsets
 public:
 
 private:
-	CCheat* _pParent;
+	CECF* _pParent;
 
 	// Methods
 public:
-	COffsets(CCheat*);
+	COffsets(CECF*);
 
 private:
 

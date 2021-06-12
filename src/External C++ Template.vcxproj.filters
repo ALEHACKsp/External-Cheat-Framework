@@ -52,37 +52,37 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cheat.h">
+    <ClInclude Include="Cheat.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Process.h">
+    <ClInclude Include="Process.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Log.h">
+    <ClInclude Include="Log.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Offsets.h">
+    <ClInclude Include="Offsets.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="ProcessEntry.h">
+    <ClInclude Include="ProcessEntry.hpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleEntry.h">
+    <ClInclude Include="ModuleEntry.hpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="CustomString.h">
+    <ClInclude Include="CustomString.hpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="Json.h">
+    <ClInclude Include="Json.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Globals.h">
+    <ClInclude Include="Globals.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
+    <ClInclude Include="Console.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Driver.h">
+    <ClInclude Include="Driver.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>

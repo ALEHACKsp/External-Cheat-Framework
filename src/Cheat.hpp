@@ -1,5 +1,5 @@
-#ifndef _Cheat_H_
-#define _Cheat_H_
+#ifndef _Cheat_Hpp_
+#define _Cheat_Hpp_
 
 #include <Windows.h>
 #include <map>
@@ -11,26 +11,46 @@ class CProcess;
 class COffsets;
 class CConsole;
 
-class CCheat
+/// <summary> ECF Parent Class </summary>
+class CECF
 {
 	// Members
 public:
 
 private:
+	/// <summary> Pointer to an Information Logger object, stored on the heap. </summary>
 	CLog* _pLog;
+
+	/// <summary> Pointer to a Process Utility object, stored on the heap. </summary>
 	CProcess* _pProcess;
+
+	/// <summary> Pointer to a Offset Manager object, stored on the heap.  </summary>
 	COffsets* _pOffsets;
+
+	/// <summary> Pointer to  </summary>
 	CConsole* _pConsole;
+
+	/// <summary> .... </summary>
 	bool _bRunning;
+
+	/// <summary> .... </summary>
 	DWORD _dwBaseModule;
+
+	/// <summary> .... </summary>
 	DWORD _dwBaseSize;
+
+	/// <summary> .... </summary>
 	int DeltaTimeStart;
+
+	/// <summary> .... </summary>
 	int DeltaTimeEnd;
+
+	/// <summary> .... </summary>
 
 	// Methods
 public:
-	CCheat();
-	~CCheat();
+	CECF();
+	~CECF();
 
 	CLog* Log() const;
 	CProcess* Process() const;
@@ -50,4 +70,4 @@ private:
 
 };
 
-#endif // !_Cheat_H_
+#endif // !_Cheat_Hpp_

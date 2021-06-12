@@ -1,11 +1,11 @@
-#include "Cheat.h"
-#include "Process.h"
-#include "CustomString.h"
-#include "ProcessEntry.h"
-#include "ModuleEntry.h"
-#include "Log.h"
+#include "Cheat.hpp"
+#include "Process.hpp"
+#include "CustomString.hpp"
+#include "ProcessEntry.hpp"
+#include "ModuleEntry.hpp"
+#include "Log.hpp"
 
-CProcess::CProcess(CCheat* pParent)
+CProcess::CProcess(CECF* pParent)
 	: _pParent{ pParent }, _hTargetProcess{ static_cast<HANDLE>(0) }, _dwTargetProcessID{ 0 }, _ExeName{ new CString("NoName") }
 {
 }

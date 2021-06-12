@@ -157,29 +157,29 @@
     <ClCompile Include="ProcessEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Console.h">
+    <ClInclude Include="Console.hpp">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Cheat.h" />
-    <ClInclude Include="CustomString.h" />
-    <ClInclude Include="Driver.h" />
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="Json.h" />
-    <ClInclude Include="Log.h">
+    <ClInclude Include="Cheat.hpp" />
+    <ClInclude Include="CustomString.hpp" />
+    <ClInclude Include="Driver.hpp" />
+    <ClInclude Include="Globals.hpp" />
+    <ClInclude Include="Json.hpp" />
+    <ClInclude Include="Log.hpp">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ModuleEntry.h" />
-    <ClInclude Include="Offsets.h">
+    <ClInclude Include="ModuleEntry.hpp" />
+    <ClInclude Include="Offsets.hpp">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Process.h">
+    <ClInclude Include="Process.hpp">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ProcessEntry.h">
+    <ClInclude Include="ProcessEntry.hpp">
       <SubType>
       </SubType>
     </ClInclude>

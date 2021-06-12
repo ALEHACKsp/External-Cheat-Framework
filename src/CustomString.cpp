@@ -1,5 +1,6 @@
-#include "CustomString.h"
+#include "CustomString.hpp"
 
+// No-args Constructor
 CString::CString()
     : _String{ nullptr }
 {
@@ -7,6 +8,7 @@ CString::CString()
     *_String = '\0';
 }
 
+// Overloaded Constructor
 CString::CString(const char* s)
     : _String{ nullptr }
 {
@@ -71,7 +73,7 @@ CString& CString::operator=(CString&& rhs) noexcept
     return *this;
 }
 
-
+// Negate operator
 CString CString::operator-() const
 {
     char* buff = new char[strlen(_String) + 1];
@@ -87,26 +89,31 @@ CString CString::operator-() const
     return out;
 }
 
+// Equal to operator
 bool CString::operator==(const CString& rhs) const
 {
     return (strcmp(this->_String, rhs._String) == 0);
 }
 
+// Not equal to operator
 bool CString::operator!=(const CString& rhs) const
 {
     return (strcmp(this->_String, rhs._String) != 0);
 }
 
+// Lexicographically smaller than operator
 bool CString::operator<(const CString& rhs) const
 {
     return this->_String < rhs._String;
 }
 
+// Lexicographically bigger than operator
 bool CString::operator>(const CString& rhs) const
 {
     return this->_String > rhs._String;
 }
 
+// Addition operator
 CString CString::operator+(const CString& rhs) const
 {
     char* buff = new char[strlen(_String) + strlen(rhs._String) + 1];
@@ -121,6 +128,7 @@ CString CString::operator+(const CString& rhs) const
     return out;
 }
 
+// Addition assignment operator
 CString& CString::operator+=(const CString& rhs)
 {
     *this = *this + rhs;
@@ -128,6 +136,7 @@ CString& CString::operator+=(const CString& rhs)
     return *this;
 }
 
+// Multiply by operator
 CString CString::operator*(int rhs) const
 {
     CString out(_String);
@@ -138,6 +147,7 @@ CString CString::operator*(int rhs) const
     return out;
 }
 
+// Multiply by assignment operator
 CString& CString::operator*=(int rhs)
 {
     *this = *this * rhs;
@@ -145,6 +155,7 @@ CString& CString::operator*=(int rhs)
     return *this;
 }
 
+// Uppercase conversion operator
 CString& CString::operator++()
 {
     for (size_t i = 0; i < strlen(_String); i++)
@@ -153,13 +164,17 @@ CString& CString::operator++()
     return *this;
 }
 
+// Uppercase conversion operator
 CString CString::operator++(int)
 {
     CString out(*this);
+
     operator++();
+
     return out;
 }
 
+// Lowercase conversion operator
 CString& CString::operator--()
 {
     for (size_t i = 0; i < strlen(_String); i++)
@@ -168,6 +183,7 @@ CString& CString::operator--()
     return *this;
 }
 
+// Lowercase conversion operator
 CString CString::operator--(int)
 {
     CString out(*this);
@@ -175,12 +191,20 @@ CString CString::operator--(int)
     return out;
 }
 
+// String length getter
 int CString::Length() const
 {
     return strlen(_String);
 }
 
+// C-style string getter
 const char* CString::String() const
+{
+    return _String;
+}
+
+// C++-style string getter
+std::string CString::CppString() const
 {
     return _String;
 }

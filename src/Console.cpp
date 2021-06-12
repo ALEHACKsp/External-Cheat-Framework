@@ -1,9 +1,9 @@
-#include "Console.h"
-#include "Cheat.h"
-#include "Log.h"
-#include "CustomString.h"
+#include "Console.hpp"
+#include "Cheat.hpp"
+#include "Log.hpp"
+#include "CustomString.hpp"
 
-CConsole::CConsole(CCheat* pParent)
+CConsole::CConsole(CECF* pParent)
     : _pParent{ pParent }, _dwBufferSize{ 0 }, _Buffer{ const_cast<char*>("") }, _bFirstDrawCall{ true }
 {
 }

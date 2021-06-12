@@ -1,12 +1,12 @@
-#ifndef _Log_H_
-#define _Log_H_
+#ifndef _Log_Hpp_
+#define _Log_Hpp_
 
 #include <Windows.h>
 #include <stdio.h>
 #include <utility>
-#include "CustomString.h"
+#include "CustomString.hpp"
 
-class CCheat;
+class CECF;
 
 class CLog
 {

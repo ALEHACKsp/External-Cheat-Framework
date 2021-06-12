@@ -1,4 +1,4 @@
-#include "ModuleEntry.h"
+#include "ModuleEntry.hpp"
 
 CModuleEntry::CModuleEntry()
 	: _Module{ MODULEENTRY32{sizeof(_Module),0,0,0,0,0,0,0,0,0} }

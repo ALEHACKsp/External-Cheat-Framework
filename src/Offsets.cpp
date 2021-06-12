@@ -1,7 +1,7 @@
-#include "Offsets.h"
-#include "Cheat.h"
+#include "Offsets.hpp"
+#include "Cheat.hpp"
 
-COffsets::COffsets(CCheat* pParent)
+COffsets::COffsets(CECF* pParent)
 	: _pParent{ pParent }
 {
 }

@@ -1,4 +1,4 @@
-#include "ProcessEntry.h"
+#include "ProcessEntry.hpp"
 
 CProcessEntry::CProcessEntry()
 	: _Process{ PROCESSENTRY32{sizeof(_Process),0,0,0,0,0,0,0,0,0} }

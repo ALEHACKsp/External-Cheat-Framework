@@ -1,8 +1,8 @@
-#include "Cheat.h"
-#include "CustomString.h"
-#include "Process.h"
-#include "Log.h"
-#include "Console.h"
+#include "Cheat.hpp"
+#include "CustomString.hpp"
+#include "Process.hpp"
+#include "Log.hpp"
+#include "Console.hpp"
 
 // Global Switches, defined here for convenience... 
 // You can define KERNEL_MODE_RW in the preprocessor settings in the properties windows to toggle Kernel Driver based read/writes
@@ -12,7 +12,7 @@
 
 int main()
 {
-	CCheat* Cheat = new CCheat(); // Allocate new storage on the heap for a CCheat object, and then store a pointer that points to that storage here.
+	CECF* Cheat = new CECF(); // Allocate new storage on the heap for a CECF object, and then store a pointer that points to that storage here.
 
 	{
 		if (!Cheat->Process()->Attach("ac_client.exe"))
@@ -85,7 +85,7 @@ int main()
 		}
 	}
 
-	delete Cheat; // Free the previously allocated storage for the CCheat object(line 11), and set the pointer to nullptr.
+	delete Cheat; // Free the previously allocated storage for the CECF object(line 11), and set the pointer to nullptr.
 
 	return 1;
 }

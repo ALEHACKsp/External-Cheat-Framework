@@ -1,42 +1,48 @@
-#ifndef _Process_H_
-#define _Process_H_
+#ifndef _Process_Hpp_
+#define _Process_Hpp_
 
 #include <Windows.h>
 #include <TlHelp32.h>
 
 class CString;
-class CCheat;
+class CECF;
 class CModuleEntry;
 class CDriver;
 
 class CProcess
 {
-	// Class Members
+	// Members
 public:
 
 private:	
-	CCheat* _pParent;
-	HANDLE	_hTargetProcess;
-	DWORD	_dwTargetProcessID;
-	CString* _ExeName;
+	CECF*		_pParent;
+	HANDLE		_hTargetProcess;
+	DWORD		_dwTargetProcessID;
+	CString*	_ExeName;
 
 #ifdef KERNEL_MODE_RW
-	CDriver* _pDriver;
+
+	CDriver*	_pDriver;
+
 #endif // KERNEL_MODE_RW
 
 
-	// Class Methods
+	// Methods
 public:
-	CProcess(CCheat*);												// Constructor, Requires Pointer to Parent Object
+	CProcess(CECF*);												// Constructor, Requires Pointer to Parent Object
 	~CProcess();													// Destructor
 
-	bool Attach(CString);											// Attach 
-	CModuleEntry GetModuleInformation(CString) const;				// Get Base Address of Module of Given Name
-	DWORD64 FindSignature(DWORD64, DWORD64, BYTE*, BYTE*) const;	// Find Memory Signature within Specified Region
-	bool DataCompare(BYTE*, BYTE*, BYTE*) const;					// Utility Function for FindSignature()
-	HANDLE hTargetProcess() const;									// Get handle to target process
-	DWORD dwTargetProcessID() const;								// Get PID of target process
-	CString ExeName() const;
+	HANDLE			TargetProcess() const;											//
+	DWORD			TargetProcessID() const;										// Getters
+	CString			ExeName() const;										//
+
+	bool			Attach(CString);											// Attach 
+	CModuleEntry	GetModuleInformation(CString) const;				// Get Base Address of Module of Given Name
+	DWORD64			FindSignature(DWORD64, DWORD64, BYTE*, BYTE*) const;	// Find Memory Signature within Specified Region
+	bool			DataCompare(BYTE*, BYTE*, BYTE*) const;					// Utility Function for FindSignature()
+	HANDLE			hTargetProcess() const;									// Get handle to target process
+	DWORD			dwTargetProcessID() const;								// Get PID of target process
+
 
 #ifdef KERNEL_MODE_RW
 
@@ -68,4 +74,4 @@ private:
 
 };
 
-#endif // !_Process_H_
+#endif // !_Process_Hpp_

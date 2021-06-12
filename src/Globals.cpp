@@ -1,3 +1,3 @@
-#include "Globals.h"
+#include "Globals.hpp"
 
 Globals* pGlobals = new Globals;

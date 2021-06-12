@@ -1,14 +1,14 @@
-#include "Globals.h"
-#include "Cheat.h"
-#include "Log.h"
-#include "Process.h"
-#include "Offsets.h"
-#include "Console.h"
-#include "ModuleEntry.h"
+#include "Globals.hpp"
+#include "Cheat.hpp"
+#include "Log.hpp"
+#include "Process.hpp"
+#include "Offsets.hpp"
+#include "Console.hpp"
+#include "ModuleEntry.hpp"
 #include <ctime>
 #include <string>
 
-CCheat::CCheat()
+CECF::CECF()
 	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, 
 	_pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 },
 	DeltaTimeStart{ 0 }, DeltaTimeEnd{ 0 }
@@ -16,65 +16,65 @@ CCheat::CCheat()
 	pGlobals->_gpCheat = this;
 }
 
-CCheat::~CCheat()
+CECF::~CECF()
 {
 	delete _pLog;
 	delete _pProcess;
 	delete _pOffsets;
 }
 
-CLog* CCheat::Log() const
+CLog* CECF::Log() const
 {
 	return _pLog;
 }
 
-CProcess* CCheat::Process() const
+CProcess* CECF::Process() const
 {
 	return _pProcess;
 }
 
-COffsets* CCheat::Offsets() const
+COffsets* CECF::Offsets() const
 {
 	return _pOffsets;
 }
 
-CConsole* CCheat::Console() const
+CConsole* CECF::Console() const
 {
 	return _pConsole;
 }
 
-bool CCheat::Running() const
+bool CECF::Running() const
 {
 	return _bRunning;
 }
 
-int CCheat::DeltaTime() const
+int CECF::DeltaTime() const
 {
 	return DeltaTimeEnd - DeltaTimeStart;
 }
 
-void CCheat::StartDeltaTime()
+void CECF::StartDeltaTime()
 {
 	DeltaTimeStart = clock();
 }
 
-void CCheat::EndDeltaTime()
+void CECF::EndDeltaTime()
 {
 	DeltaTimeEnd = clock();
 }
 
-DWORD CCheat::BaseModule() const
+DWORD CECF::BaseModule() const
 {
 	return _dwBaseModule;
 }
 
-DWORD CCheat::BaseSize() const
+DWORD CECF::BaseSize() const
 {
 	return _dwBaseSize;
 }
 
 
-bool CCheat::GetGameModule(CString GameName)
+bool CECF::GetGameModule(CString GameName)
 {
 	CModuleEntry ModuleEntry = _pProcess->GetModuleInformation(GameName);
 
@@ -87,13 +87,13 @@ bool CCheat::GetGameModule(CString GameName)
 	return true;
 }
 
-void CCheat::GetGameData()
+void CECF::GetGameData()
 {
 	// Game Specific
 
 }
 
-void CCheat::Draw()
+void CECF::Draw()
 {
 	// Game Specific
 

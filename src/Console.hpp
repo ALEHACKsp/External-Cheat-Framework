@@ -1,9 +1,9 @@
-#ifndef _Console_H_
-#define _Console_H_
+#ifndef _Console_Hpp_
+#define _Console_Hpp_
 
 #include <Windows.h>
 
-class CCheat;
+class CECF;
 
 class CConsole
 {
@@ -11,7 +11,7 @@ class CConsole
 public:
 
 private:
-	CCheat* _pParent;
+	CECF* _pParent;
 	size_t _dwBufferSize;
 	char* _Buffer;
 	bool _bFirstDrawCall;
@@ -20,7 +20,7 @@ private:
 
 	// Methods
 public:
-	CConsole(CCheat*);
+	CConsole(CECF*);
 	~CConsole();
 
 	void SetCursor(int column, int line);
@@ -34,4 +34,4 @@ private:
 
 };
 
-#endif // _Console_H_
+#endif // _Console_Hpp_

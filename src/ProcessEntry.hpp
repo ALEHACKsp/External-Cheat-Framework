@@ -1,5 +1,5 @@
-#ifndef _ProcessEntry_H_
-#define _ProcessEntry_H_
+#ifndef _ProcessEntry_Hpp_
+#define _ProcessEntry_Hpp_
 
 #include <Windows.h>
 #include <TlHelp32.h>
@@ -27,4 +27,4 @@ private:
 
 };
 
-#endif // _ProcessEntry_H_
+#endif // _ProcessEntry_Hpp_
