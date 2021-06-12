@@ -1,6 +1,6 @@
-# External Cheat Template
+# Jimmy's External Cheat Framework
  
-An External Cheat Template written entirely in C++.
+An External Cheat Framework written primarily in C++, with additions of C.
 
 Uses all User-mode calls (ReadProcessMemory, WriteProcessMemory)
 
