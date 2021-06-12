@@ -32,16 +32,16 @@ public:
 	CProcess(CECF*);												// Constructor, Requires Pointer to Parent Object
 	~CProcess();													// Destructor
 
-	HANDLE			TargetProcess() const;											//
-	DWORD			TargetProcessID() const;										// Getters
-	CString			ExeName() const;										//
+	HANDLE TargetProcess() const;											//
+	DWORD TargetProcessID() const;										// Getters
+	CString ExeName() const;										//
 
-	bool			Attach(CString);											// Attach 
-	CModuleEntry	GetModuleInformation(CString) const;				// Get Base Address of Module of Given Name
-	DWORD64			FindSignature(DWORD64, DWORD64, BYTE*, BYTE*) const;	// Find Memory Signature within Specified Region
-	bool			DataCompare(BYTE*, BYTE*, BYTE*) const;					// Utility Function for FindSignature()
-	HANDLE			hTargetProcess() const;									// Get handle to target process
-	DWORD			dwTargetProcessID() const;								// Get PID of target process
+	bool Attach(CString);											// Attach 
+	CModuleEntry GetModuleInformation(CString) const;				// Get Base Address of Module of Given Name
+	DWORD64	FindSignature(DWORD64, DWORD64, BYTE*, BYTE*) const;	// Find Memory Signature within Specified Region
+	bool DataCompare(BYTE*, BYTE*, BYTE*) const;					// Utility Function for FindSignature()
+	HANDLE hTargetProcess() const;									// Get handle to target process
+	DWORD dwTargetProcessID() const;								// Get PID of target process
 
 
 #ifdef KERNEL_MODE_RW

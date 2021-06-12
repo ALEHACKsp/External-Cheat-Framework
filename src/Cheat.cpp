@@ -11,7 +11,7 @@
 CECF::CECF()
 	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, 
 	_pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 },
-	DeltaTimeStart{ 0 }, DeltaTimeEnd{ 0 }
+	_iDeltaTimeStart{ 0 }, _iDeltaTimeEnd{ 0 }
 {
 	pGlobals->_gpCheat = this;
 }
@@ -50,17 +50,17 @@ bool CECF::Running() const
 
 int CECF::DeltaTime() const
 {
-	return DeltaTimeEnd - DeltaTimeStart;
+	return _iDeltaTimeEnd - _iDeltaTimeStart;
 }
 
 void CECF::StartDeltaTime()
 {
-	DeltaTimeStart = clock();
+	_iDeltaTimeStart = clock();
 }
 
 void CECF::EndDeltaTime()
 {
-	DeltaTimeEnd = clock();
+	_iDeltaTimeEnd = clock();
 }
 
 DWORD CECF::BaseModule() const
@@ -74,9 +74,9 @@ DWORD CECF::BaseSize() const
 }
 
 
-bool CECF::GetGameModule(CString GameName)
+bool CECF::GetGameModule(CString ModuleName)
 {
-	CModuleEntry ModuleEntry = _pProcess->GetModuleInformation(GameName);
+	CModuleEntry ModuleEntry = _pProcess->GetModuleInformation(ModuleName);
 
 	if (ModuleEntry.Module()->modBaseSize == 0)
 		return false;
@@ -87,7 +87,7 @@ bool CECF::GetGameModule(CString GameName)
 	return true;
 }
 
-void CECF::GetGameData()
+void CECF::GetSetGameData()
 {
 	// Game Specific
 

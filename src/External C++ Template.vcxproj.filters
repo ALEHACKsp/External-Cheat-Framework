@@ -41,13 +41,16 @@
     <ClCompile Include="ModuleEntry.cpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClCompile>
-    <ClCompile Include="CustomString.cpp">
+    <ClCompile Include="String.cpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClCompile>
     <ClCompile Include="Globals.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
     <ClCompile Include="Console.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Driver.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -70,7 +73,7 @@
     <ClInclude Include="ModuleEntry.hpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
-    <ClInclude Include="CustomString.hpp">
+    <ClInclude Include="String.hpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClInclude>
     <ClInclude Include="Json.hpp">

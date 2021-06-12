@@ -45,3 +45,5 @@
 *.idb
 *.iobj
 *.ipdb
+.vs/Jimmy's External Cheat Framework/v16/.suo
+*.db-shm

@@ -14,7 +14,7 @@ class CLog
 public:
 
 private:
-	bool _Enabled;
+	bool _bEnabled;
 
 	// Methods
 public:
@@ -23,12 +23,20 @@ public:
 	template<typename... Args>
 	void PrintPlain(CString String, Args... arguments) const
 	{
+		if (!_bEnabled)
+			return;
+
+		String += "\n";
 		printf_s(String.String(), std::forward<Args>(arguments)...);
 	}
 
 	template<typename... Args>
 	void Print(CString String, Args... arguments) const
 	{
+		if (!_bEnabled)
+			return;
+
+
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		SetConsoleTextAttribute(hConsole, BACKGROUND_GREEN);
@@ -47,6 +55,10 @@ public:
 	template<typename... Args>
 	void PrintWarning(CString String, Args... arguments) const
 	{
+		if (!_bEnabled)
+			return;
+
+
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		SetConsoleTextAttribute(hConsole, BACKGROUND_INTENSITY | BACKGROUND_RED);
@@ -65,6 +77,10 @@ public:
 	template<typename... Args>
 	void PrintError(CString String, Args... arguments) const
 	{
+		if (!_bEnabled)
+			return;
+
+
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		SetConsoleTextAttribute(hConsole, BACKGROUND_RED);

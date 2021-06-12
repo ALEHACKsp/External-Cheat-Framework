@@ -3,6 +3,6 @@
 #include "CustomString.hpp"
 
 CLog::CLog(bool Enabled)
-	: _Enabled{ Enabled }
+	: _bEnabled{ Enabled }
 {
 }
