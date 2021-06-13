@@ -142,13 +142,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CKECF.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CKECF.hpp" />
+    <ClInclude Include="Global.hpp" />
     <ClInclude Include="Memory.hpp" />
     <ClInclude Include="Raid.hpp" />
     <ClInclude Include="Shared.hpp" />
+    <ClInclude Include="Utility.hpp" />
     <ClInclude Include="Windows.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

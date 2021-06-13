@@ -23,7 +23,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cheat.cpp">
+    <ClCompile Include="CECF.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
     <ClCompile Include="Process.cpp">
@@ -55,7 +55,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cheat.hpp">
+    <ClInclude Include="CECF.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Process.hpp">

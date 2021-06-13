@@ -23,6 +23,15 @@
     <ClCompile Include="Memory.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="CKECF.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Windows.hpp">
@@ -36,6 +45,15 @@
     </ClInclude>
     <ClInclude Include="Shared.hpp">
       <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.hpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.hpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="CKECF.hpp">
+      <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -147,7 +147,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Console.cpp" />
-    <ClCompile Include="Cheat.cpp" />
+    <ClCompile Include="CECF.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Globals.cpp" />
@@ -163,7 +163,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Cheat.hpp" />
+    <ClInclude Include="CECF.hpp" />
     <ClInclude Include="String.hpp" />
     <ClInclude Include="Driver.hpp" />
     <ClInclude Include="Globals.hpp" />

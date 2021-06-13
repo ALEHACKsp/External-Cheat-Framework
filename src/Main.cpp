@@ -1,4 +1,4 @@
-#include "Cheat.hpp"
+#include "CECF.hpp"
 #include "String.hpp"
 #include "Process.hpp"
 #include "Log.hpp"
@@ -8,7 +8,6 @@
 // You can define KERNEL_MODE_RW in the preprocessor settings in the properties windows to toggle Kernel Driver based read/writes
 
 	#define REFRESH_DELAY 17.7	// ~60hz Frametime.
-
 
 int main()
 {
