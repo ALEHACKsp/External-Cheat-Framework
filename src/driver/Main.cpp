@@ -7,45 +7,98 @@
 #include "Memory.hpp"
 #include "Utility.hpp"
 
+VOID ServerThread(PVOID Context)
+{ 
+    UNREFERENCED_PARAMETER(Context);
+    CECFrameworkDriver* ECFrameworkDriver = new CECFrameworkDriver;
+
+    if (ECFrameworkDriver->Socket()->Initialize())
+    {
+        SOCKADDR Address{ AF_INET, _byteswap_ushort(9095), INADDR_ANY };
+        int ClientConnection{ 0 };
+        int ServerSocket = ECFrameworkDriver->Socket()->CreateListenSocket(AF_INET, SOCK_STREAM);
+        
+        if (ServerSocket == ~0)
+        {
+            ECFrameworkDriver->Socket()->Shutdown();
+            ECFrameworkDriver->Log()->Print("ServerThread(): CSocket::CreateListenSocket() Failed.");
+
+            return;
+        }
+        
+        if (ECFrameworkDriver->Socket()->Bind(ServerSocket, &Address))
+        {
+            ECFrameworkDriver->Socket()->CloseSocket(ServerSocket);
+            ECFrameworkDriver->Socket()->Shutdown();
+            ECFrameworkDriver->Log()->Print("ServerThread(): CSocket::Bind() Failed.");
+
+            return;
+        }
+
+        if (ECFrameworkDriver->Socket()->Listen(ServerSocket, 10) == -1)
+        {
+            ECFrameworkDriver->Socket()->CloseSocket(ServerSocket);
+            ECFrameworkDriver->Socket()->Shutdown();
+            ECFrameworkDriver->Log()->Print("ServerThread(): CSocket::Listen() Failed.");
+
+            return;
+        }
+
+        while (!ClientConnection && !ECFrameworkDriver->bShutdown())
+        {
+            ClientConnection = ECFrameworkDriver->Socket()->Accept(ServerSocket, &Address);
+
+            if (ClientConnection == ~0)
+            {
+                ECFrameworkDriver->Log()->Print("ServerThread(): CSocket::Accept() Failed.");
+
+                break;
+            }
+        }
+
+        // TODO
+        /*while (!ECFrameworkDriver->bShutdown())
+        {
+            CommandPacket Packet{};
+            DWORD64 PacketResult{};
+            
+            if (ECFrameworkDriver->Socket()->Receive(ClientConnection, (void*)&Packet, sizeof(CommandPacket), 0))
+            {
+                if (Packet.Header != PacketMagic)
+                    continue;
+
+                if (!ProcessPacket(Packet, &PacketResult))
+                    continue;
+
+                if (!ProcessRequest(ClientConnection, PacketResult))
+                    break;
+            }
+        }*/
+
+        ECFrameworkDriver->Socket()->CloseSocket(ServerSocket);
+        ECFrameworkDriver->Socket()->Shutdown();
+    }
+
+    delete ECFrameworkDriver;
+}
+
 NTSTATUS NTAPI DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
     UNREFERENCED_PARAMETER(DriverObject);
     UNREFERENCED_PARAMETER(RegistryPath);
 
-    CECFrameworkDriver* ECFrameworkDriver = new CECFrameworkDriver;
-    pGlobal = new CGlobal(ECFrameworkDriver);
+    CLog* EntryLog = new CLog;
+    HANDLE Thread{ nullptr };
 
+    if (!NT_SUCCESS(PsCreateSystemThread(&Thread, GENERIC_ALL, 0, 0, 0, ServerThread, 0)))
     {
-        SOCKADDR Address{ AF_INET, _byteswap_ushort(9095), INADDR_ANY };
+        EntryLog->Print("Failed to Create Server Thread.");
 
-        if (!ECFrameworkDriver->Socket()->Initialize())
-            return 0;
-
-        int ServerSocket = ECFrameworkDriver->Socket()->CreateListenSocket(AF_INET, SOCK_STREAM);
-
-        ECFrameworkDriver->Socket()->Bind(ServerSocket, &Address);
-
-        int ClientSocket = ECFrameworkDriver->Socket()->Accept(ServerSocket, &Address);
-
-        {
-            char ReceiveBuffer[1024]{ 0 };
-
-            ECFrameworkDriver->Socket()->Receive(ClientSocket, ReceiveBuffer, sizeof(ReceiveBuffer) - 1, 0);
-            ReceiveBuffer[sizeof(ReceiveBuffer) - 1] = '\0';
-
-            ECFrameworkDriver->Log()->Print("Received: %s", ReceiveBuffer);
-        }
-
-        {
-            char SendText[]{ "Hello!" };
-
-            ECFrameworkDriver->Socket()->Send(ClientSocket, SendText, sizeof(SendText), 0);
-        }
-
-        ECFrameworkDriver->Socket()->CloseSocket(ServerSocket);
+        return STATUS_UNSUCCESSFUL;
     }
 
-    ECFrameworkDriver->Socket()->Shutdown();
+    ZwClose(Thread);
+    delete EntryLog;
 
-    return STATUS_UNSUCCESSFUL;
+    return STATUS_SUCCESS;
 }

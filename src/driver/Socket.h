@@ -57,6 +57,7 @@ public:
 	int CloseSocket(int SocketIndex);
 	bool ASyncContextAllocate(SOCKET_ASYNC_CONTEXT* ASyncContext);
 	void Shutdown();
+	int Listen(int SocketIndex, int BackLog);
 
 private:
 

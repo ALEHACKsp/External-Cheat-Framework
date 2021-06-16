@@ -5,6 +5,8 @@ class CECFrameworkDriver;
 
 class CGlobal
 {
+	friend CECFrameworkDriver;
+
 	// Members
 public:
 

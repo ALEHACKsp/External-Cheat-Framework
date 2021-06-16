@@ -17,9 +17,9 @@ public:
 	~CLog();
 
 	template<typename... Args>
-	void PrintPlain(const char* String, Args... arguments) const
+	void Print(const char* String, Args... arguments) const
 	{
-		DbgPrintEx(DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, String, std::forward<Args>(arguments)...);
+		DbgPrintEx(DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, String, arguments...);
 	}
 
 private:

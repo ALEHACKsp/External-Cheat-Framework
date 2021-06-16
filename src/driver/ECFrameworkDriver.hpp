@@ -16,6 +16,7 @@ private:
 	CMemory* _pMemory;
 	CLog* _pLog;
 	CSocket* _pSocket;
+	bool _bShutdown;
 
 	// Methods
 public:
@@ -26,6 +27,7 @@ public:
 	CMemory* Memory() const;
 	CLog* Log() const;
 	CSocket* Socket() const;
+	bool bShutdown() const;
 
 private:
 
