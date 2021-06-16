@@ -29,7 +29,13 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="CKECF.cpp">
+    <ClCompile Include="ECFrameworkDriver.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,9 +46,6 @@
     <ClInclude Include="Memory.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Raid.hpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="Shared.hpp">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
@@ -52,7 +55,13 @@
     <ClInclude Include="Utility.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="CKECF.hpp">
+    <ClInclude Include="ECFrameworkDriver.hpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket.h">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>

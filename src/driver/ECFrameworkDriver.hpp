@@ -3,6 +3,8 @@
 
 class CUtility;
 class CMemory;
+class CLog;
+class CSocket;
 
 class CECFrameworkDriver
 {
@@ -12,6 +14,8 @@ public:
 private:
 	CUtility* _pUtility;
 	CMemory* _pMemory;
+	CLog* _pLog;
+	CSocket* _pSocket;
 
 	// Methods
 public:
@@ -20,6 +24,8 @@ public:
 
 	CUtility* Utility() const;
 	CMemory* Memory() const;
+	CLog* Log() const;
+	CSocket* Socket() const;
 
 private:
 

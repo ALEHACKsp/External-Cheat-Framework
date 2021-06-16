@@ -1,26 +1,51 @@
 #include "Global.hpp"
 #include "ECFrameworkDriver.hpp"
-#include "Windows.hpp"
-#include "Raid.hpp"
+#include "Log.h"
 #include "Shared.hpp"
+#include "Socket.h"
+#include "Windows.hpp"
 #include "Memory.hpp"
 #include "Utility.hpp"
-#include <string>
-#include <memory>
 
-NTSTATUS DriverMain()
+NTSTATUS NTAPI DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
-	CECFrameworkDriver* pECFramework = new CECFrameworkDriver;
-	pGlobal = new CGlobal(pECFramework);
+    UNREFERENCED_PARAMETER(DriverObject);
+    UNREFERENCED_PARAMETER(RegistryPath);
 
-	if (!*reinterpret_cast<void**>(DWORD64(PsLoadedModuleList) + 0x30)) // NTOSKrnl Base Address
-		return STATUS_UNSUCCESSFUL;
+    CECFrameworkDriver* ECFrameworkDriver = new CECFrameworkDriver;
+    pGlobal = new CGlobal(ECFrameworkDriver);
 
-	const wchar_t* CallbackDrivers[5] = { L"ndis.sys", L"ntfs.sys", L"tcpip.sys", L"fltmgr.sys", L"dxgkrnl.sys" };
+    {
+        SOCKADDR Address{ AF_INET, _byteswap_ushort(9095), INADDR_ANY };
 
-	for (size_t i = 0; i < 5; ++i)
-		if (pECFramework->RegisterCallbacks(CallbackDrivers[i]) != STATUS_UNSUCCESSFUL)
-			return STATUS_SUCCESS;
+        if (!ECFrameworkDriver->Socket()->Initialize())
+            return 0;
 
-	return STATUS_UNSUCCESSFUL;
+        int ServerSocket = ECFrameworkDriver->Socket()->CreateListenSocket(AF_INET, SOCK_STREAM);
+
+        ECFrameworkDriver->Socket()->Bind(ServerSocket, &Address);
+
+        int ClientSocket = ECFrameworkDriver->Socket()->Accept(ServerSocket, &Address);
+
+        {
+            char ReceiveBuffer[1024]{ 0 };
+
+            ECFrameworkDriver->Socket()->Receive(ClientSocket, ReceiveBuffer, sizeof(ReceiveBuffer) - 1, 0);
+            ReceiveBuffer[sizeof(ReceiveBuffer) - 1] = '\0';
+
+            ECFrameworkDriver->Log()->Print("Received: %s", ReceiveBuffer);
+        }
+
+        {
+            char SendText[]{ "Hello!" };
+
+            ECFrameworkDriver->Socket()->Send(ClientSocket, SendText, sizeof(SendText), 0);
+        }
+
+        ECFrameworkDriver->Socket()->CloseSocket(ServerSocket);
+    }
+
+    ECFrameworkDriver->Socket()->Shutdown();
+
+    return STATUS_UNSUCCESSFUL;
 }
