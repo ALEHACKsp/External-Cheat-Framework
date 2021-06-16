@@ -1,5 +1,5 @@
 #include "Globals.hpp"
-#include "CECF.hpp"
+#include "ECFramework.hpp"
 #include "Log.hpp"
 #include "Process.hpp"
 #include "Offsets.hpp"
@@ -8,7 +8,7 @@
 #include <ctime>
 #include <string>
 
-CECF::CECF()
+CECFramework::CECFramework()
 	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, 
 	_pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 },
 	_iDeltaTimeStart{ 0 }, _iDeltaTimeEnd{ 0 }
@@ -16,65 +16,65 @@ CECF::CECF()
 	pGlobals->_gpCheat = this;
 }
 
-CECF::~CECF()
+CECFramework::~CECFramework()
 {
 	delete _pLog;
 	delete _pProcess;
 	delete _pOffsets;
 }
 
-CLog* CECF::Log() const
+CLog* CECFramework::Log() const
 {
 	return _pLog;
 }
 
-CProcess* CECF::Process() const
+CProcess* CECFramework::Process() const
 {
 	return _pProcess;
 }
 
-COffsets* CECF::Offsets() const
+COffsets* CECFramework::Offsets() const
 {
 	return _pOffsets;
 }
 
-CConsole* CECF::Console() const
+CConsole* CECFramework::Console() const
 {
 	return _pConsole;
 }
 
-bool CECF::Running() const
+bool CECFramework::Running() const
 {
 	return _bRunning;
 }
 
-int CECF::DeltaTime() const
+int CECFramework::DeltaTime() const
 {
 	return _iDeltaTimeEnd - _iDeltaTimeStart;
 }
 
-void CECF::StartDeltaTime()
+void CECFramework::StartDeltaTime()
 {
 	_iDeltaTimeStart = clock();
 }
 
-void CECF::EndDeltaTime()
+void CECFramework::EndDeltaTime()
 {
 	_iDeltaTimeEnd = clock();
 }
 
-DWORD CECF::BaseModule() const
+DWORD CECFramework::BaseModule() const
 {
 	return _dwBaseModule;
 }
 
-DWORD CECF::BaseSize() const
+DWORD CECFramework::BaseSize() const
 {
 	return _dwBaseSize;
 }
 
 
-bool CECF::GetGameModule(CString ModuleName)
+bool CECFramework::GetGameModule(CString ModuleName)
 {
 	CModuleEntry ModuleEntry = _pProcess->GetModuleInformation(ModuleName);
 
@@ -87,13 +87,13 @@ bool CECF::GetGameModule(CString ModuleName)
 	return true;
 }
 
-void CECF::GetSetGameData()
+void CECFramework::GetSetGameData()
 {
 	// Game Specific
 
 }
 
-void CECF::Draw()
+void CECFramework::Draw()
 {
 	// Game Specific
 

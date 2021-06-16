@@ -1,7 +1,7 @@
 #ifndef _Offsets_Hpp_
 #define _Offsets_Hpp_
 
-class CECF;
+class CECFramework;
 
 class COffset
 {
@@ -24,11 +24,11 @@ class COffsets
 public:
 
 private:
-	CECF* _pParent;
+	CECFramework* _pParent;
 
 	// Methods
 public:
-	COffsets(CECF*);
+	COffsets(CECFramework*);
 
 private:
 

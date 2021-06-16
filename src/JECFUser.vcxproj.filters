@@ -23,9 +23,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CECF.cpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Process.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
@@ -53,11 +50,11 @@
     <ClCompile Include="Driver.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
+    <ClCompile Include="ECFramework.cpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CECF.hpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Process.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
@@ -86,6 +83,9 @@
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="Driver.hpp">
+      <Filter>Source Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="ECFramework.hpp">
       <Filter>Source Files\Classes</Filter>
     </ClInclude>
   </ItemGroup>

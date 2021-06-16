@@ -12,7 +12,7 @@ class COffsets;
 class CConsole;
 
 /// <summary> The ECF Parent Class. </summary>
-class CECF
+class CECFramework
 {
 	// Members
 public:
@@ -49,11 +49,11 @@ private:
 
 	// Methods
 public:
-	/// <summary> The no-args CECF constructor. </summary>
-	CECF();
+	/// <summary> The no-args CECFramework constructor. </summary>
+	CECFramework();
 
-	/// <summary> The CECF destructor. </summary>
-	~CECF();
+	/// <summary> The CECFramework destructor. </summary>
+	~CECFramework();
 
 	/// <returns> A Pointer to the Information Logger object. </returns>
 	CLog* Log() const;

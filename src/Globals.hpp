@@ -1,17 +1,17 @@
 #ifndef _Globals_Hpp_
 #define _Globals_Hpp_
 
-class CECF;
+class CECFramework;
 
 class Globals
 {
-	friend CECF;
+	friend CECFramework;
 
 private:
-	CECF* _gpCheat;
+	CECFramework* _gpCheat;
 
 public:
-	CECF* pCheat() { return _gpCheat; }
+	CECFramework* pCheat() { return _gpCheat; }
 
 }; extern Globals* pGlobals;
 

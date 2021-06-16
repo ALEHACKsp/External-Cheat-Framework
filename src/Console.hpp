@@ -3,7 +3,7 @@
 
 #include <Windows.h>
 
-class CECF;
+class CECFramework;
 
 /// <summary> The ECF Debugger Console class. </summary>
 class CConsole
@@ -13,7 +13,7 @@ public:
 
 private:
 	/// <summary> A Pointer to this Objects' Parent CCheat class. </summary>
-	CECF* _pParent;
+	CECFramework* _pParent;
 
 	/// <summary> Used to store the size of the debug area buffer in the console whenever GetNumCharsInConsoleBuffer() is called. </summary>
 	size_t _dwBufferSize;
@@ -34,7 +34,7 @@ private:
 public:
 	/// <summary> .... </summary>
 	/// <param name="bar"> .... </param>
-	CConsole(CECF*);
+	CConsole(CECFramework*);
 
 	/// <summary> .... </summary>
 	~CConsole();

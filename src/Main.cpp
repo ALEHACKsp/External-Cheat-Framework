@@ -1,4 +1,4 @@
-#include "CECF.hpp"
+#include "ECFramework.hpp"
 #include "String.hpp"
 #include "Process.hpp"
 #include "Log.hpp"
@@ -11,7 +11,7 @@
 
 int main()
 {
-	CECF* Cheat = new CECF(); // Allocate new storage on the heap for a CECF object, and then store a pointer that points to that storage here.
+	CECFramework* const Cheat = new CECFramework(); // Allocate new storage on the heap for a CECFramework object, and then store a pointer that points to that storage here.
 
 	{
 		if (!Cheat->Process()->Attach("ac_client.exe"))
@@ -84,7 +84,7 @@ int main()
 		}
 	}
 
-	delete Cheat; // Free the previously allocated storage for the CECF object(line 11), and set the pointer to nullptr.
+	delete Cheat; // Free the previously allocated storage for the CECFramework object(line 11), and set the pointer to nullptr.
 
 	return 1;
 }

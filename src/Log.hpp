@@ -6,7 +6,7 @@
 #include <utility>
 #include "String.hpp"
 
-class CECF;
+class CECFramework;
 
 class CLog
 {

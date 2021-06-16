@@ -1,9 +1,9 @@
 #include "Console.hpp"
-#include "CECF.hpp"
+#include "ECFramework.hpp"
 #include "Log.hpp"
 #include "String.hpp"
 
-CConsole::CConsole(CECF* pParent)
+CConsole::CConsole(CECFramework* pParent)
     : _pParent{ pParent }, _dwBufferSize{ 0 }, _Buffer{ const_cast<char*>("") }, _bFirstDrawCall{ true }
 {
 }

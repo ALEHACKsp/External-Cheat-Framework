@@ -5,7 +5,7 @@
 #include <TlHelp32.h>
 
 class CString;
-class CECF;
+class CECFramework;
 class CModuleEntry;
 class CDriver;
 
@@ -15,7 +15,7 @@ class CProcess
 public:
 
 private:	
-	CECF*		_pParent;
+	CECFramework*		_pParent;
 	HANDLE		_hTargetProcess;
 	DWORD		_dwTargetProcessID;
 	CString*	_ExeName;
@@ -29,7 +29,7 @@ private:
 
 	// Methods
 public:
-	CProcess(CECF*);												// Constructor, Requires Pointer to Parent Object
+	CProcess(CECFramework*);												// Constructor, Requires Pointer to Parent Object
 	~CProcess();													// Destructor
 
 	HANDLE TargetProcess() const;											//

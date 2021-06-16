@@ -1,7 +1,7 @@
 #include "Offsets.hpp"
-#include "CECF.hpp"
+#include "ECFramework.hpp"
 
-COffsets::COffsets(CECF* pParent)
+COffsets::COffsets(CECFramework* pParent)
 	: _pParent{ pParent }
 {
 }
