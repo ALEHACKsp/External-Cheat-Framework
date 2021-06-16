@@ -1,7 +1,7 @@
 #ifndef _Global_Hpp_
 #define _Global_Hpp_
 
-class CKECF;
+class CECFrameworkDriver;
 
 class CGlobal
 {
@@ -9,14 +9,16 @@ class CGlobal
 public:
 
 private:
-	CKECF* _pCKECF;
+	CECFrameworkDriver* _pECFrameworkDriver;
 
 	// Methods
 public:
-	CKECF* pCKECF;
+	CGlobal(CECFrameworkDriver* pCKECF);
+
+	CECFrameworkDriver* ECFrameworkDriver() const;
 
 private:
 
-};
+}; extern CGlobal* pGlobal;
 
 #endif // !_Global_Hpp_

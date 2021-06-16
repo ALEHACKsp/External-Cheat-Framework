@@ -1,12 +1,10 @@
 #ifndef _CKECF_Hpp_
 #define _CKECF_Hpp_
 
-#include <ntifs.h>
-
 class CUtility;
 class CMemory;
 
-class CKECF
+class CECFrameworkDriver
 {
 	// Members
 public:
@@ -17,15 +15,14 @@ private:
 
 	// Methods
 public:
-
-private:
-	CKECF();
-	~CKECF();
+	CECFrameworkDriver();
+	~CECFrameworkDriver();
 
 	CUtility* Utility() const;
 	CMemory* Memory() const;
-	NTSTATUS RegisterCallbacks(const wchar_t* Module);
-	NTSTATUS DriverCallback(void* Context, void* Reason, void* KeyData);
+
+private:
+
 };
 
 #endif // !_CKECF_Hpp_

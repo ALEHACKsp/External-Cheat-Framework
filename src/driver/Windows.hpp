@@ -2,16 +2,6 @@
 #define _Windows_Hpp_
 
 #include <ntifs.h>
-#include <cstdint>
-
-#undef ExFreePool
-#define POOL_TAG_USE 'xItp'
-#define ExFreePool(a) ExFreePoolWithTag (a, POOL_TAG_USE)
-
-typedef unsigned char BYTE;
-typedef unsigned char* PBYTE;
-typedef unsigned long long QWORD;
-typedef void(__stdcall* PPS_POST_PROCESS_INIT_ROUTINE)(void);
 
 typedef struct _IMAGE_FILE_HEADER
 {
@@ -398,35 +388,11 @@ typedef struct _RTL_USER_PROCESS_PARAMETERS
 	UNICODE_STRING CommandLine;
 } RTL_USER_PROCESS_PARAMETERS, * PRTL_USER_PROCESS_PARAMETERS;
 
-typedef struct _PEB
-{
-	unsigned char Reserved1[2];
-	unsigned char BeingDebugged;
-	unsigned char Reserved2[1];
-	PVOID Reserved3[2];
-	PPEB_LDR_DATA Ldr;
-	PRTL_USER_PROCESS_PARAMETERS ProcessParameters;
-	PVOID Reserved4[3];
-	PVOID AtlThunkSListPtr;
-	PVOID Reserved5;
-	ULONG Reserved6;
-	PVOID Reserved7;
-	ULONG Reserved8;
-	ULONG AtlThunkSListPtr32;
-	PVOID Reserved9[45];
-	unsigned char Reserved10[96];
-	PPS_POST_PROCESS_INIT_ROUTINE PostProcessInitRoutine;
-	unsigned char Reserved11[128];
-	PVOID Reserved12[1];
-	ULONG SessionId;
-} PEB, * PPEB;
-
 typedef struct _RTL_PROCESS_MODULES
 {
 	ULONG NumberOfModules;
 	RTL_PROCESS_MODULE_INFORMATION Modules[1];
 } RTL_PROCESS_MODULES, * PRTL_PROCESS_MODULES;
-
 
 typedef struct _SYSTEM_MODULE
 {
@@ -497,7 +463,6 @@ typedef union _EX_FAST_REF
 
 	unsigned __int64 Value;
 } EX_FAST_REF, * PEX_FAST_REF;
-
 
 extern "C"
 {
