@@ -57,7 +57,7 @@ VOID ServerThread(PVOID Context)
         }
 
         // TODO
-        /*while (!ECFrameworkDriver->bShutdown())
+        /*while (ClientConnection && !ECFrameworkDriver->bShutdown())
         {
             CommandPacket Packet{};
             DWORD64 PacketResult{};
