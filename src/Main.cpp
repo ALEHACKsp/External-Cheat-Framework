@@ -3,6 +3,7 @@
 #include "Process.hpp"
 #include "Log.hpp"
 #include "Console.hpp"
+#include "Offsets.hpp"
 
 // Global Switches, defined here for convenience... 
 // You can define KERNEL_MODE_RW in the preprocessor settings in the properties windows to toggle Kernel Driver based read/writes
@@ -26,18 +27,7 @@ int main()
 		Cheat->Log()->Print("Base Module Address: 0x%X", Cheat->BaseModule());
 		Cheat->Log()->Print("Base Module Size: %d Bytes", Cheat->BaseSize());
 
-		DWORD BaseAddress = 0x400000;
-		DWORD LocalPlayer = 0x10F4F4;
-		WORD m_XPos = 0x0038;
-		WORD m_YPos = 0x003C;
-		WORD m_ZPos = 0x0040;
-		WORD m_isPosMoving = 0x0070;
-		WORD m_Health = 0x00F8;
-		WORD m_Vest = 0x00FC;
-		WORD m_AmmoMags = 0x0128;
-		WORD m_Ammo = 0x0150;
-
-		DWORD LocalPlayerPtr = Cheat->Process()->Read<DWORD>(BaseAddress + LocalPlayer);
+		DWORD LocalPlayerPtr = Cheat->Process()->Read<DWORD>(NOffsets::BaseAddress + NOffsets::LocalPlayer);
 		Cheat->Log()->Print("LocalPlayerPtr: 0x%X", LocalPlayerPtr);
 		// END: ASSAULT CUBE EXAMPLE
 
@@ -50,13 +40,13 @@ int main()
 				float Position[3] = { 0 };
 
 				for (int i = 0; i < 3; i++)		// Here we perform 3 read calls, 4 bytes apart, to collect info to form a 3D Vector.
-					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (static_cast<int>(i) * 0x4));
+					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + NOffsets::m_XPos + (static_cast<int>(i) * 0x4));
 
-				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };	// Here we read a single byte of data at the address resulted by the equation
-				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };			// LocalPlayerPtr + m_isPosMoving.
-				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest) };
-				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags) };
-				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo) };
+				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + NOffsets::m_isPosMoving) };	// Here we read a single byte of data at the address resulted by the equation
+				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_Health) };			// LocalPlayerPtr + m_isPosMoving.
+				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_Vest) };
+				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_AmmoMags) };
+				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_Ammo) };
 				// END: ASSAULT CUBE EXAMPLE
 
 
