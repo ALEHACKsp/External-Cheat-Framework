@@ -7,11 +7,11 @@
 // Global Switches, defined here for convenience... 
 // You can define KERNEL_MODE_RW in the preprocessor settings in the properties windows to toggle Kernel Driver based read/writes
 
-	#define REFRESH_DELAY 17.7	// ~60hz Frametime.
+#define REFRESH_DELAY float(17.7) // ~60hz Frametime.
 
 int main()
 {
-	CECFramework* const Cheat = new CECFramework(); // Allocate new storage on the heap for a CECFramework object, and then store a pointer that points to that storage here.
+	CECFramework* Cheat = new CECFramework; // Allocate new storage on the heap for a CECFramework object, and then store a pointer that points to that storage here.
 
 	{
 		if (!Cheat->Process()->Attach("ac_client.exe"))
@@ -49,11 +49,11 @@ int main()
 				// START: ASSAULT CUBE EXAMPLE
 				float Position[3] = { 0 };
 
-				for (size_t i = 0; i < 3; i++)																		// Here we perform 3 read calls that each read 4 bytes of data at the address
-					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (i * sizeof(float)));		// resulted by the equation LocalPlayerPtr + m_XPos + (i * sizeof(float)).
+				for (int i = 0; i < 3; i++)		// Here we perform 3 read calls, 4 bytes apart, to collect info to form a 3D Vector.
+					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (static_cast<int>(i) * 0x4));
 
-				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };					// Here we read a single byte of data at the address resulted by the equation
-				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };							// LocalPlayerPtr + m_isPosMoving.
+				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };	// Here we read a single byte of data at the address resulted by the equation
+				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };			// LocalPlayerPtr + m_isPosMoving.
 				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest) };
 				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags) };
 				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo) };
