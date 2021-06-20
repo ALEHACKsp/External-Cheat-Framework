@@ -131,7 +131,7 @@ int CSocket::Send(int SocketIndex, const void* Buffer, size_t Length, int Flags)
     return Transfer(Socket, (PVOID)Buffer, &Size, (ULONG)Flags, TRUE);
 }
 
-bool Transfer(SOCKET* Socket, PVOID Buffer, PULONG Length, ULONG Flags, BOOLEAN Send)
+bool CSocket::Transfer(SOCKET* Socket, PVOID Buffer, PULONG Length, ULONG Flags, BOOLEAN Send)
 {
     WSK_BUF WskBuffer{ IoAllocateMdl(Buffer, (ULONG)WskBuffer.Length, FALSE, FALSE, NULL), 0, *Length };
 

@@ -53,6 +53,7 @@ public:
 	int Accept(int SocketIndex, SOCKADDR* Address);
 	int Receive(int SocketIndex, void* Buffer, size_t Length, int Flags);
 	int Send(int SocketIndex, const void* Buffer, size_t Length, int Flags);
+	bool Transfer(SOCKET* Socket, PVOID Buffer, PULONG Length, ULONG Flags, BOOLEAN Send);
 	bool Bind(int SocketIndex, const SOCKADDR* Address);
 	int CloseSocket(int SocketIndex);
 	bool ASyncContextAllocate(SOCKET_ASYNC_CONTEXT* ASyncContext);

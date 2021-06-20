@@ -14,7 +14,7 @@ VOID ServerThread(PVOID Context)
 
     if (ECFrameworkDriver->Socket()->Initialize())
     {
-        SOCKADDR Address{ AF_INET, _byteswap_ushort(9095), INADDR_ANY };
+        SOCKADDR_IN Address{ AF_INET, _byteswap_ushort(9095), INADDR_ANY, 0 };
         int ClientConnection{ 0 };
         int ServerSocket = ECFrameworkDriver->Socket()->CreateListenSocket(AF_INET, SOCK_STREAM);
         
@@ -26,7 +26,7 @@ VOID ServerThread(PVOID Context)
             return;
         }
         
-        if (ECFrameworkDriver->Socket()->Bind(ServerSocket, &Address))
+        if (ECFrameworkDriver->Socket()->Bind(ServerSocket, reinterpret_cast<SOCKADDR*>(&Address)))
         {
             ECFrameworkDriver->Socket()->CloseSocket(ServerSocket);
             ECFrameworkDriver->Socket()->Shutdown();
@@ -46,7 +46,7 @@ VOID ServerThread(PVOID Context)
 
         while (!ClientConnection && !ECFrameworkDriver->bShutdown())
         {
-            ClientConnection = ECFrameworkDriver->Socket()->Accept(ServerSocket, &Address);
+            ClientConnection = ECFrameworkDriver->Socket()->Accept(ServerSocket, reinterpret_cast<SOCKADDR*>(&Address));
 
             if (ClientConnection == ~0)
             {

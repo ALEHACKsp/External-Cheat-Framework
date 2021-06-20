@@ -466,8 +466,6 @@ typedef union _EX_FAST_REF
 
 extern "C"
 {
-	__declspec(dllimport) PLIST_ENTRY NTAPI PsLoadedModuleList;
-	__declspec(dllimport) POBJECT_TYPE* IoDriverObjectType;
 	__declspec(dllimport) PVOID NTAPI RtlFindExportedRoutineByName(PVOID, PCCH);
 	__declspec(dllimport) PVOID NTAPI PsGetProcessSectionBaseAddress(PEPROCESS);
 	__declspec(dllimport) PPEB NTAPI PsGetProcessPeb(PEPROCESS);
@@ -475,7 +473,7 @@ extern "C"
 	__declspec(dllimport) NTSTATUS NTAPI ZwProtectVirtualMemory(HANDLE, PVOID*, PSIZE_T, ULONG, PULONG);
 	__declspec(dllimport) PIMAGE_NT_HEADERS NTAPI RtlImageNtHeader(PVOID);
 	__declspec(dllimport) NTSTATUS NTAPI ObReferenceObjectByName(PUNICODE_STRING, ULONG, PACCESS_STATE, ACCESS_MASK, POBJECT_TYPE, KPROCESSOR_MODE, PVOID OPTIONAL, PVOID*);
-	__declspec(dllimport) NTSTATUS NTAPI ZwQuerySystemInformation(_In_ SYSTEM_INFORMATION_CLASS SystemInformationClass,	_Out_opt_ PVOID SystemInformation, _In_ ULONG SystemInformationLength, _Out_opt_ PULONG ReturnLength);
+	__declspec(dllimport) NTSTATUS NTAPI ZwQuerySystemInformation(SYSTEM_INFORMATION_CLASS SystemInformationClass,	PVOID SystemInformation, ULONG SystemInformationLength, PULONG ReturnLength);
 }
 
 #endif // !_Windows_Hpp_
