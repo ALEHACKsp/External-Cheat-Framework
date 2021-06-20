@@ -2,16 +2,14 @@
 #include "ECFramework.hpp"
 #include "Log.hpp"
 #include "Process.hpp"
-#include "Offsets.hpp"
 #include "Console.hpp"
 #include "ModuleEntry.hpp"
 #include <ctime>
 #include <string>
 
 CECFramework::CECFramework()
-	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) }, _pOffsets{ new COffsets(this) }, 
-	_pConsole{ new CConsole(this) }, _bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 },
-	_iDeltaTimeStart{ 0 }, _iDeltaTimeEnd{ 0 }
+	: _pLog{ new CLog(true) }, _pProcess{ new CProcess(this) },	_pConsole{ new CConsole(this) }, 
+	_bRunning{ true }, _dwBaseModule{ 0 }, _dwBaseSize{ 0 }, _iDeltaTimeStart{ 0 }, _iDeltaTimeEnd{ 0 }
 {
 	pGlobals->_gpCheat = this;
 }
@@ -20,7 +18,6 @@ CECFramework::~CECFramework()
 {
 	delete _pLog;
 	delete _pProcess;
-	delete _pOffsets;
 }
 
 CLog* CECFramework::Log() const
@@ -31,11 +28,6 @@ CLog* CECFramework::Log() const
 CProcess* CECFramework::Process() const
 {
 	return _pProcess;
-}
-
-COffsets* CECFramework::Offsets() const
-{
-	return _pOffsets;
 }
 
 CConsole* CECFramework::Console() const

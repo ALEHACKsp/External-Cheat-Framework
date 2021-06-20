@@ -8,7 +8,6 @@
 class CString;
 class CLog;
 class CProcess;
-class COffsets;
 class CConsole;
 
 /// <summary> The ECF Parent Class. </summary>
@@ -23,9 +22,6 @@ private:
 
 	/// <summary> Pointer to the Process Utility object, stored on the heap. </summary>
 	CProcess* _pProcess;
-
-	/// <summary> Pointer to the Offset Manager object, stored on the heap.  </summary>
-	COffsets* _pOffsets;
 
 	/// <summary> Pointer to the Debugger Console object, stored on the heap. </summary>
 	CConsole* _pConsole;
@@ -61,9 +57,6 @@ public:
 	/// <returns> A Pointer to the Process Utility object. </returns>
 	CProcess* Process() const;
 
-	/// <returns> A Pointer to the Offset Manager object. </returns>
-	COffsets* Offsets() const;
-
 	/// <returns> A Pointer to the Debugger Console object. </returns>
 	CConsole* Console() const;
 
@@ -86,7 +79,7 @@ public:
 	DWORD BaseSize() const;
 
 	/// <summary> Uses Process->GetModuleInformation to set this objects' Game Module Information (BaseAddress & ModuleSize). </summary>
-	/// <param name="ModuleName"> The FILE name of your game's EXE. </param>
+	/// <param name="ModuleName"> The FULL FILENAME of your game's module (e.g. "AS_CLIENT.EXE", or "CLIENT.DLL"). </param>
 	/// <returns> True or false based on whether the specified module was successfully found. </returns>
 	bool GetGameModule(CString ModuleName);
 

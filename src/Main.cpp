@@ -3,15 +3,15 @@
 #include "Process.hpp"
 #include "Log.hpp"
 #include "Console.hpp"
+#include "Offsets.hpp"
 
-// Global Switches, defined here for convenience... 
-// You can define KERNEL_MODE_RW in the preprocessor settings in the properties windows to toggle Kernel Driver based read/writes
+// Global Switches, defined here for convenience...
 
-#define REFRESH_DELAY float(17.7) // ~60hz Frametime.
+#define REFRESH_DELAY float(17.7)																				// ~60hz Frametime.
 
 int main()
 {
-	CECFramework* Cheat = new CECFramework; // Allocate new storage on the heap for a CECFramework object, and then store a pointer that points to that storage here.
+	CECFramework* Cheat = new CECFramework;																		// Allocate new storage on the heap for a CECFramework object, and then store a pointer that points to that storage here.
 
 	{
 		if (!Cheat->Process()->Attach("ac_client.exe"))
@@ -26,18 +26,7 @@ int main()
 		Cheat->Log()->Print("Base Module Address: 0x%X", Cheat->BaseModule());
 		Cheat->Log()->Print("Base Module Size: %d Bytes", Cheat->BaseSize());
 
-		DWORD BaseAddress = 0x400000;
-		DWORD LocalPlayer = 0x10F4F4;
-		WORD m_XPos = 0x0038;
-		WORD m_YPos = 0x003C;
-		WORD m_ZPos = 0x0040;
-		WORD m_isPosMoving = 0x0070;
-		WORD m_Health = 0x00F8;
-		WORD m_Vest = 0x00FC;
-		WORD m_AmmoMags = 0x0128;
-		WORD m_Ammo = 0x0150;
-
-		DWORD LocalPlayerPtr = Cheat->Process()->Read<DWORD>(BaseAddress + LocalPlayer);
+		DWORD LocalPlayerPtr = Cheat->Process()->Read<DWORD>(NOffsets::BaseAddress + NOffsets::LocalPlayer);
 		Cheat->Log()->Print("LocalPlayerPtr: 0x%X", LocalPlayerPtr);
 		// END: ASSAULT CUBE EXAMPLE
 
@@ -49,18 +38,18 @@ int main()
 				// START: ASSAULT CUBE EXAMPLE
 				float Position[3] = { 0 };
 
-				for (int i = 0; i < 3; i++)		// Here we perform 3 read calls, 4 bytes apart, to collect info to form a 3D Vector.
-					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + m_XPos + (static_cast<int>(i) * 0x4));
+				for (int i = 0; i < 3; i++)																		// Here we perform 3 read calls, 4 bytes apart, to collect x,y,z info to form a set of 3D coordinates.
+					Position[i] = Cheat->Process()->Read<float>(LocalPlayerPtr + NOffsets::m_XPos + (static_cast<int>(i) * 0x4));
 
-				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + m_isPosMoving) };	// Here we read a single byte of data at the address resulted by the equation
-				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Health) };			// LocalPlayerPtr + m_isPosMoving.
-				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Vest) };
-				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_AmmoMags) };
-				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + m_Ammo) };
+				bool bIsMoving = { Cheat->Process()->Read<bool>(LocalPlayerPtr + NOffsets::m_isPosMoving) };	// Here we read a single byte of data at the address resulted by the equation
+				int Health = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_Health) };				// LocalPlayerPtr + m_isPosMoving.
+				int Armour = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_Vest) };
+				int AmmoMags = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_AmmoMags) };
+				int Ammo = { Cheat->Process()->Read<int>(LocalPlayerPtr + NOffsets::m_Ammo) };
 				// END: ASSAULT CUBE EXAMPLE
 
 
-				Cheat->Console()->StartDraw(); // Clear debug buffer for new printing
+				Cheat->Console()->StartDraw();																	// Clear debug buffer for new printing
 
 
 				// START: ASSAULT CUBE EXAMPLE
@@ -73,18 +62,18 @@ int main()
 				// END: ASSAULT CUBE EXAMPLE
 
 
-				Cheat->Console()->EndDraw(); // Finish debug draw
+				Cheat->Console()->EndDraw();																	// Finish debug draw
 
 				Cheat->EndDeltaTime();
 			}
 
-			Sleep((static_cast<int>(REFRESH_DELAY - Cheat->DeltaTime())  // Cap the refresh rate of the console.. We minus the time it took for memory reading/writing and console
-				& 0x80000000) ? 0 : REFRESH_DELAY - Cheat->DeltaTime()); // printing to keep it consistent. We check if the high bit is set to see if it is a negative value.
+			Sleep((static_cast<int>(REFRESH_DELAY - Cheat->DeltaTime())											// Cap the refresh rate of the console.. We minus the time it took for memory reading/writing and console
+				& 0x80000000) ? 0 : REFRESH_DELAY - Cheat->DeltaTime());										// printing to keep it consistent. We check if the high bit is set to see if it is a negative value.
 
 		}
 	}
 
-	delete Cheat; // Free the previously allocated storage for the CECFramework object(line 11), and set the pointer to nullptr.
+	delete Cheat;																								// Free the previously allocated storage for the CECFramework object(line 11), and set the pointer to nullptr.
 
 	return 1;
 }

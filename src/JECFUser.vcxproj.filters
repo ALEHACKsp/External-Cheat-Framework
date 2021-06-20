@@ -29,9 +29,6 @@
     <ClCompile Include="Log.cpp">
       <Filter>Source Files\Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Offsets.cpp">
-      <Filter>Source Files\Classes</Filter>
-    </ClCompile>
     <ClCompile Include="ProcessEntry.cpp">
       <Filter>Source Files\Classes\Subclasses</Filter>
     </ClCompile>
